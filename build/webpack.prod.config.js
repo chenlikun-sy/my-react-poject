@@ -21,4 +21,20 @@ module.exports = webpackMerge(baseWebpackConfig,{
             }
         })
     ],
+        // 模块
+        module:{
+            // rules:[
+            //     {
+            //         test: /\.(js|jsx|mjs)$/,
+            //         include: paths.appSrc,
+            //         loader: require.resolve('babel-loader'),
+            //         options: {
+            //           plugins: [  
+            //             ['import', { libraryName: 'antd', style: 'css' }]  // `style: true` 会加载 less 文件  
+            //           ],
+            //           compact: true,
+            //         },
+            //       }
+            // ]
+        },
 })

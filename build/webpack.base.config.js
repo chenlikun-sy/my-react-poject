@@ -75,7 +75,20 @@ module.exports = {
                     limit: 10000, // 小于10000B的图片base64的方式引入，大于10000B的图片以路径的方式导入
                     name: 'static/fonts/[name].[hash:7].[ext]'
                 }
-            }
+            },
+            // {
+            //     test: /\.(js|jsx|mjs)$/,    
+            //     loader: require.resolve('babel-loader'),
+            //     options: {
+            //       plugins: [  
+            //         ['import', { libraryName: 'antd', style: 'css' }]  // `style: true` 会加载 less 文件  
+            //       ],
+            //       // This is a feature of `babel-loader` for webpack (not Babel itself).
+            //       // It enables caching results in ./node_modules/.cache/babel-loader/
+            //       // directory for faster rebuilds.
+            //       cacheDirectory: true,
+            //     },
+            //   }
         ]
     },
 }

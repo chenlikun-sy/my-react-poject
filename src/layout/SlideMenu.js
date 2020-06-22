@@ -24,7 +24,7 @@ class SliderMenu extends Component {
         if(item.childern && item.childern.length > 0){
             return (
                 <SubMenu 
-                        key={item.path} 
+                        key={item.path}
                         title={
                             <span>
                                 <div icon={`${item.icon}`}></div>
