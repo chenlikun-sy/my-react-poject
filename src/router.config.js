@@ -1,6 +1,6 @@
 const routes = [
     {
-        title:"简历管理",
+        title:"OMC质量报告",
         icon:"file",
         path:"/resume",
     }
