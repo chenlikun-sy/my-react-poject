@@ -1,8 +1,13 @@
 const routes = [
     {
         title:"OMC质量报告",
-        icon:"file",
-        path:"/resume",
+        icon:"CtOmcDataQuality",
+        path:"/CtOmcDataQuality",
+    },
+    {
+        title:"采集状态查询",
+        icon:"CtCollectStatus",
+        path:"/CtCollectStatus"
     }
 ]
 

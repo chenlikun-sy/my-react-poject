@@ -3,7 +3,8 @@ import { Route,BrowserRouter,Link,Switch } from "react-router-dom"
 import SliderMenu from "./layout/SlideMenu"
 import NavigationBar from "./layout/NavigationBar"
 import HomeIndex from "./views/home"
-import ResumeIndex from "./views/resume"
+import CtOmcDataQuality from "./views/ct_omc_data_quality"
+import  CtCollectStatus from "./views/ct_collect_status"
 class AppRouter extends React.Component {
     render(){
         return (
@@ -17,8 +18,10 @@ class AppRouter extends React.Component {
                             <Switch>
                                 {/* exact */}
                                 <Route exact path="/" component={HomeIndex} />
-                                {/* resume */}
-                                <Route exact path="/resume" component={ResumeIndex}/>
+                                {/* CtOmcDataQuality */}
+                                <Route exact path="/CtOmcDataQuality" component={CtOmcDataQuality}/>
+                                {/* CtCollectStatus */}
+                                <Route exact path="/CtCollectStatus" component={CtCollectStatus}/>
                             </Switch>
                         </div>
                     </div>
