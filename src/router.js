@@ -2,10 +2,8 @@ import React from "react"
 import { Route,BrowserRouter,Link,Switch } from "react-router-dom"
 import SliderMenu from "./layout/SlideMenu"
 import NavigationBar from "./layout/NavigationBar"
-import HomeIndex from "./home"
-import BlogIndex from "./blog"
-import ResumeIndex from "./resume"
-import UserIndex from "./user"
+import HomeIndex from "./views/home"
+import ResumeIndex from "./views/resume"
 class AppRouter extends React.Component {
     render(){
         return (
@@ -21,10 +19,6 @@ class AppRouter extends React.Component {
                                 <Route exact path="/" component={HomeIndex} />
                                 {/* resume */}
                                 <Route exact path="/resume" component={ResumeIndex}/>
-                                {/* blog */}
-                                <Route path="/blog" component={BlogIndex}/>
-                                {/* user */}
-                                <Route path="/user" component={UserIndex}/>
                             </Switch>
                         </div>
                     </div>

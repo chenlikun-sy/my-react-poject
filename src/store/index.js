@@ -1,4 +1,4 @@
-import UserListStore from "./../user/store/UserList"
+import UserListStore from "./UserList"
 
 const store = {
     UserListStore
