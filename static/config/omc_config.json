@@ -12,42 +12,57 @@
             "url":"www.baidu.com"
         },{
             "id":3,
-            "name":"AH_OMC2_15MIN.html",
+            "name":"ZJ_OMC11_15MIN.html",
             "img":"",
             "url":"www.baidu.com"
         },{
             "id":4,
-            "name":"AH_OMC2_15MIN.html",
+            "name":"ZJ_OMC3_15MIN.html",
             "img":"",
             "url":"www.baidu.com"
         },{
             "id":5,
-            "name":"AH_OMC2_15MIN.html",
+            "name":"JS_OMC16_15MIN.html",
             "img":"",
             "url":"www.baidu.com"
         },{
             "id":6,
-            "name":"AH_OMC2_15MIN.html",
+            "name":"JS_OMC12_15MIN.html",
             "img":"",
             "url":"www.baidu.com"
         },{
             "id":7,
-            "name":"AH_OMC2_15MIN.html",
+            "name":"ZJ_OMC10_15MIN.html",
             "img":"",
             "url":"www.baidu.com"
         },{
             "id":8,
-            "name":"AH_OMC2_15MIN.html",
+            "name":"ZJ_OMC9_15MIN.html",
             "img":"",
             "url":"www.baidu.com"
         },{
             "id":9,
-            "name":"AH_OMC2_15MIN.html",
+            "name":"ZJ_OMC6_15MIN.html",
             "img":"",
             "url":"www.baidu.com"
         },{
             "id":10,
-            "name":"AH_OMC2_15MIN.html",
+            "name":"GD_OMC26_15MIN.html",
+            "img":"",
+            "url":"www.baidu.com"
+        },{
+            "id":11,
+            "name":"GD_OMC18_15MIN.html",
+            "img":"",
+            "url":"www.baidu.com"
+        },{
+            "id":12,
+            "name":"GD_OMC13_15MIN.html",
+            "img":"",
+            "url":"www.baidu.com"
+        },{
+            "id":13,
+            "name":"GD_OMC5_15MIN.html",
             "img":"",
             "url":"www.baidu.com"
         }
