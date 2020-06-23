@@ -199,14 +199,14 @@ class SysOperStatusQuery extends React.Component {
                         columns={this.state.columns}
                         dataSource={this.state.data}
                         pagination={{ pageSize: 50 }}
-                        scroll={{ x: 1600, y: 'calc(700px + 100%)', }}
+                        scroll={{ x: 600, y: 'calc(400px + 10%)', }}
                     ></Table>
 
                 </div>
                 <Modal
                     title="详情"
                     width="400"
-                    height="1200"
+                    height="400"
                     visible={this.state.visible}
                     destroyOnClose="true"
                     onOk={this.handleOk}
