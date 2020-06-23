@@ -5,6 +5,7 @@ import './ct_collect_status_table.css'
 
 import theadJson from '../config/tableThead.json'
 import {
+    getCollectStateQueryByCount,
     getCollectStateQueryByInfo
 } from "../../../common/axios/sysService";
 
@@ -13,18 +14,48 @@ export default class CtCollectStatusTable extends React.Component {
         super(props);
         this.state = {
             dataSource: [],
-            columns: []
+            columns: [],
+            pageSize: 10,//每页10条数据
+            page: 1,//当前页数
+            count: 0,//总条数,
+
         }
+        this.provId = null;
+        this.omcId = null;
+        this.typeId = null;
+        this.beginTime = null;
+        this.endTime = null;
 
     }
 
     componentDidMount() {
+        this.props.onRef(this)
         this.setTableColumns()
-        this.getData()
-
     }
-    getData() {
-        getCollectStateQueryByInfo(1, 2, 3).then(res => {
+
+    getData(provId, omcId, typeId, beginTime, endTime) {
+        console.log(provId, omcId, typeId, beginTime, endTime);
+        this.provId = provId;
+        this.omcId = omcId;
+        this.typeId = typeId;
+        this.beginTime = beginTime;
+        this.endTime = endTime;
+        getCollectStateQueryByCount(provId, omcId, typeId, beginTime, endTime).then(res => {
+            this.getDataCountCompleted(res);
+        });
+    }
+    getDataCountCompleted(count) {
+        this.setState({
+            count: count
+        }, () => {
+            this.getDataInfo(this.provId, this.omcId, this.typeId, this.beginTime, this.endTime, 1, this.state.pageSize)
+        })
+    }
+
+    getDataInfo(provId, omcId, typeId, beginTime, endTime, beginIndex, endIndex) {
+        console.log(provId, omcId, typeId, beginTime, endTime);
+
+        getCollectStateQueryByInfo(provId, omcId, typeId, beginTime, endTime, beginIndex, endIndex).then(res => {
             this.getDataCompleted(res);
         });
     }
@@ -66,12 +97,45 @@ export default class CtCollectStatusTable extends React.Component {
     //翻页事件
     pageOnclick = (page, pageSize) => {
         console.log(page, pageSize);
+        this.setState({
+            page: page
+        })
+        this.getDataInfo(this.provId, this.omcId, this.typeId, this.beginTime, this.endTime, (page - 1) * this.state.pageSize + 1, page * this.state.pageSize)
     }
     //分页条数改变触发事件
     onShowSizeChange = (current, pageSize) => {
         console.log(current, pageSize);
+        this.setState({
+            page: 1,
+            pageSize: pageSize
+        }, () => {
+            this.getDataInfo(this.provId, this.omcId, this.typeId, this.beginTime, this.endTime, (this.state.page - 1) * this.state.pageSize + 1, this.state.page * this.state.pageSize)
+        })
     }
 
+
+
+    render() {
+        return (
+            <div className="ct-collect-status-table">
+                <Table className="ct-collect-status-tabletop" columns={this.state.columns} dataSource={this.state.dataSource} pagination={false} />
+                <div className="ct-collect-status-page">
+                    <Pagination
+                        showSizeChanger
+                        onChange={this.pageOnclick}
+                        onShowSizeChange={this.onShowSizeChange}
+                        defaultCurrent={this.state.page}
+                        pageSize={this.state.pageSize}
+                        total={this.state.count}
+                        showTotal={(total, range) => `共  ${total}  条数据`}
+                    />
+                </div>
+
+            </div>
+        )
+    }
+
+    //配置表头
     setTableColumns() {
         var theadList = [];
         theadJson.forEach((item) => {
@@ -88,52 +152,5 @@ export default class CtCollectStatusTable extends React.Component {
         this.setState({
             columns: theadList
         })
-        //this.columns = theadList;
-        //表格表头配置
-        // this.columns = [{
-        //     title: 'Name',
-        //     dataIndex: 'name',
-        //     sorter: {
-        //         compare: (a, b) => a.age - b.age,
-        //         multiple: 3,
-        //     },
-        // },
-        // {
-        //     title: 'Age',
-        //     dataIndex: 'age',
-        //     sorter: {
-        //         compare: (a, b) => a.age - b.age,
-        //         multiple: 3,
-        //     },
-        // },
-        // {
-        //     title: 'Address',
-        //     dataIndex: 'address',
-        //     sorter: {
-        //         compare: (a, b) => a.age - b.age,
-        //         multiple: 3,
-        //     },
-        //     render: (text, record) => <a onClick={() => this.clickTableData(text, record)}>delete</a>
-        // },
-        // ];
-    }
-
-    render() {
-        return (
-            <div className="ct-collect-status-table">
-                <Table className="ct-collect-status-tabletop" columns={this.state.columns} dataSource={this.state.dataSource} pagination={false} />
-                <div className="ct-collect-status-page">
-                <Pagination
-                    
-                    showSizeChanger
-                    onChange={this.pageOnclick}
-                    onShowSizeChange={this.onShowSizeChange}
-                    defaultCurrent={3}
-                    total={500}
-                />
-                </div>
-                
-            </div>
-        )
     }
 }

@@ -9,9 +9,6 @@ import CtCollectStatusTable from './ct_collect_status_table/ct_collect_status_ta
 export default class CtCollectStatus extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            tabNum: 1
-        }
 
     }
 
@@ -20,11 +17,15 @@ export default class CtCollectStatus extends React.Component {
      
     }
 
+      toolClick = (provId, omcId, typeId, beginTime, endTime) => {
+        this.onRefTable.getData(provId, omcId, typeId, beginTime, endTime)
+      };
+
     render(){
         return (
             <div className="ct-collect-status">
-                <CtCollectStatusTool></CtCollectStatusTool>
-                <CtCollectStatusTable></CtCollectStatusTable>
+                <CtCollectStatusTool toolClick={this.toolClick}></CtCollectStatusTool>
+                <CtCollectStatusTable onRef={(ref) => this.onRefTable = ref}></CtCollectStatusTable>
             </div>
         )
     }
