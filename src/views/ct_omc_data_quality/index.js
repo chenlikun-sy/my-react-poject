@@ -72,6 +72,7 @@ export default class ResumeIndex extends React.Component {
                     </div>
                 })}
 
+
                 <Modal
                     title={this.state.title}
                     wrapClassName={'ant-model-div'}
@@ -79,9 +80,7 @@ export default class ResumeIndex extends React.Component {
                     onOk={this.handleOk}
                     onCancel={this.handleCancel}
                 >
-                    <p>Some contents...</p>
-                    <p>Some contents...</p>
-                    <p>Some contents...</p>
+                    <iframe src="https://www.baidu.com"></iframe>
                 </Modal>
             </div>
         )
