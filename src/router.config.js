@@ -9,6 +9,12 @@ const routes = [
         icon:"CtCollectStatus",
         path:"/CtCollectStatus"
     }
+    ,
+    {
+        title:"数据质量24小时查询",
+        icon:"CtDataQuality",
+        path:"/CtDataQuality"
+    }
 ]
 
 export default routes;

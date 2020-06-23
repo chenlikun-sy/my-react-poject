@@ -7,27 +7,31 @@
 .app-container {
     height: 100%;
     .app-content {
-        margin-top: @navHeight;
+        // margin-top: @navHeight;
+        height: calc(100% - 60px);
+    display: flex;
+    flex-direction: row;
         .container {
-            margin-left: @slideWidth;
+            //margin-left: @slideWidth;
         }
     }
 }
 .slide-menu {
-    position: fixed;
-    left: 0;
-    top: 0;
-    padding-top: @navHeight;
+    //position: fixed;
+    //left: 0;
+    //top: 0;
+    //padding-top: @navHeight;
     width: @slideWidth;
     height: 100%;
-    z-index: 6;
+    display: inline-block;
+    //z-index: 6;
     /* 修改侧边栏高度 */
     .ant-menu {
         height: 100%;
     }
 }
 .navigation-bar {
-    position: fixed;
+    // position: fixed;
     left: 0;
     top: 0;
     z-index: 66;
@@ -70,9 +74,11 @@
 }
 .container {
     padding: 20px 15px;
-    width: calc(100% - 130px);
-    height: calc(100% - 60px);
-    position: absolute;
+    // width: calc(100% - 130px);
+    // height: calc(100% - 60px);
+    // position: absolute;
+    flex: 1;
+    height: 100%;
 }
 
    

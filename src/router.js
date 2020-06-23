@@ -5,6 +5,7 @@ import NavigationBar from "./layout/NavigationBar"
 import HomeIndex from "./views/home"
 import CtOmcDataQuality from "./views/ct_omc_data_quality"
 import  CtCollectStatus from "./views/ct_collect_status"
+import  CtDataQuality from "./views/ct_data_quality"
 class AppRouter extends React.Component {
     render(){
         return (
@@ -22,6 +23,8 @@ class AppRouter extends React.Component {
                                 <Route exact path="/CtOmcDataQuality" component={CtOmcDataQuality}/>
                                 {/* CtCollectStatus */}
                                 <Route exact path="/CtCollectStatus" component={CtCollectStatus}/>
+                                {/* CtCollectStatus */}
+                                <Route exact path="/CtDataQuality" component={CtDataQuality}/>
                             </Switch>
                         </div>
                     </div>
