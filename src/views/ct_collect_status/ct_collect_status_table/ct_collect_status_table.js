@@ -1,12 +1,13 @@
 import React from 'react'
-import { Table, Pagination } from 'antd'
+import { Table, Pagination, Modal } from 'antd'
 
-import './ct_collect_status_table.css'
+import './ct_collect_status_table.less'
 
 import theadJson from '../config/tableThead.json'
 import {
     getCollectStateQueryByCount,
-    getCollectStateQueryByInfo
+    getCollectStateQueryByInfo,
+    getCollectStateTextByUrl
 } from "../../../common/axios/sysService";
 
 export default class CtCollectStatusTable extends React.Component {
@@ -18,6 +19,7 @@ export default class CtCollectStatusTable extends React.Component {
             pageSize: 10,//每页10条数据
             page: 1,//当前页数
             count: 0,//总条数,
+            visible: false//模态窗显示隐藏
 
         }
         this.provId = null;
@@ -34,7 +36,6 @@ export default class CtCollectStatusTable extends React.Component {
     }
 
     getData(provId, omcId, typeId, beginTime, endTime) {
-        console.log(provId, omcId, typeId, beginTime, endTime);
         this.provId = provId;
         this.omcId = omcId;
         this.typeId = typeId;
@@ -91,12 +92,28 @@ export default class CtCollectStatusTable extends React.Component {
 
 
     }
-    clickTableData = () => {
 
+
+    getHttpTextData(item) {
+        getCollectStateQueryByCount(url).then(res => {
+            this.getHttpTextDataCompleted(res);
+        });
+    }
+    getHttpTextDataCompleted(data) {
+        this.setState({
+            visible: true,
+            urlData: '1111111111111111111'
+        })
+
+    }
+
+
+    clickTableData = (text, record) => {
+        //this.getHttpTextData();
+        this.getHttpTextDataCompleted()
     }
     //翻页事件
     pageOnclick = (page, pageSize) => {
-        console.log(page, pageSize);
         this.setState({
             page: page
         })
@@ -104,12 +121,17 @@ export default class CtCollectStatusTable extends React.Component {
     }
     //分页条数改变触发事件
     onShowSizeChange = (current, pageSize) => {
-        console.log(current, pageSize);
         this.setState({
             page: 1,
             pageSize: pageSize
         }, () => {
             this.getDataInfo(this.provId, this.omcId, this.typeId, this.beginTime, this.endTime, (this.state.page - 1) * this.state.pageSize + 1, this.state.page * this.state.pageSize)
+        })
+    }
+
+    handleCancel = () => {
+        this.setState({
+            visible: false
         })
     }
 
@@ -130,6 +152,18 @@ export default class CtCollectStatusTable extends React.Component {
                         showTotal={(total, range) => `共  ${total}  条数据`}
                     />
                 </div>
+                <Modal
+                    title="采集日志"
+                    visible={this.state.visible}
+                    onCancel={this.handleCancel}
+                    footer={null}
+                    wrapClassName={'ct-collect-status-modal'}
+                >
+                    <p>{this.state.urlData}</p>
+                    <p>{this.state.urlData}</p>
+                    <p>{this.state.urlData}</p>
+                    
+                </Modal>
 
             </div>
         )

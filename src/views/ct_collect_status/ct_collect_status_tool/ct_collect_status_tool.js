@@ -1,6 +1,8 @@
 import React from 'react'
 import { Select, Input, DatePicker, Button } from 'antd'
 
+import moment from 'moment';
+
 import './ct_collect_status_tool.css'
 
 import {
@@ -171,6 +173,7 @@ export default class CtCollectStatusTool extends React.Component {
                     showTime
                     format="YYYY/MM/DD HH:mm:ss"
                     onChange={this.timeOnChange}
+                    defaultValue={[moment(new Date().toLocaleDateString(), 'YYYY-MM-DD'), moment(new Date().toLocaleDateString(), 'YYYY-MM-DD')]}
                 />
                 <Button type="primary"  onClick={this.searchData}>查询</Button>
             </div>
