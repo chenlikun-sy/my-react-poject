@@ -1,6 +1,6 @@
 // 系统状态查询详情// 系统状态查询
 import React from 'react'
-import './ct_sys_oper_status_detail.css'
+import './ct_sys_oper_status_detail.less'
 import {
     getSystemRunStateQueryByInfo
 } from "../../../common/axios/sysService"
