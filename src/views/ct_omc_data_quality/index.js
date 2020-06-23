@@ -42,7 +42,7 @@ export default class ResumeIndex extends React.Component {
                 title:element.name
             }
         );
-        window.location.href="www.baidu.com"
+        // window.location.href="www.baidu.com"
 
     }
 

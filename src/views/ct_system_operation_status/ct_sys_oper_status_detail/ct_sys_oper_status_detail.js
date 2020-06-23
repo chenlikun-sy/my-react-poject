@@ -1,5 +1,6 @@
 // 系统状态查询详情// 系统状态查询
 import React from 'react'
+import {Table} from 'antd'
 class SysOperStatusDetail extends React.Component {
     constructor(props) {
         super(props);

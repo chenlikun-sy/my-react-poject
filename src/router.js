@@ -7,6 +7,7 @@ import CtOmcDataQuality from "./views/ct_omc_data_quality"
 import CtSystemOperationStatus from "./views/ct_system_operation_status"
 import CtCollectStatus from "./views/ct_collect_status/ct_collect_status"
 import CtDataQuality from "./views/ct_data_quality/ct_data_quality"
+import  CtHistorySeach from "./views/ct_history_seach"
 
 class AppRouter extends React.Component {
     render() {
@@ -29,6 +30,8 @@ class AppRouter extends React.Component {
                                 <Route exact path="/CtDataQuality" component={CtDataQuality} />
                                 {/* CtSystemOperationStatus */}
                                 <Route exact path="/CtSystemOperationStatus" component={CtSystemOperationStatus} />
+                                {/* CtCollectStatus */}
+                                <Route exact path="/CtHistorySeach" component={CtHistorySeach}/>
                             </Switch>
                         </div>
                     </div>

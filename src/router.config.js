@@ -16,6 +16,11 @@ const routes = [
         title: "运行状态查询",
         icon: "CtSystemOperationStatus",
         path: "/CtSystemOperationStatus"
+    },
+    {
+        title:"历史状态查询",
+        icon:"CtHistorySeach",
+        path:"/CtHistorySeach"
     }
 ]
 
