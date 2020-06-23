@@ -1,0 +1,24 @@
+.ct-collect-status-tool{
+    height: 50px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: left;
+    background-color: #eee;
+    padding: 0 10px;
+}
+.ct-collect-status-tool-select{
+    flex: 1;
+    max-width: 150px;
+    margin-right: 20px;
+}
+.ct-collect-status-tool-input{
+    flex: 1;
+    max-width: 150px;
+    margin-right: 20px;
+}
+.ct-collect-status-tool-time{
+    flex: 1;
+    max-width: 350px;
+}

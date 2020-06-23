@@ -1,0 +1,19 @@
+.ct-collect-status-table{
+    flex: 1;
+    padding: 10px;
+    width: 100%;
+    overflow: auto;
+    background-color: #eee;
+}
+
+.ct-collect-status-tabletop{
+    height: calc(100% - 45px);
+}
+.ct-collect-status-table .ant-table-thead>tr>th{
+    min-width: 90px;
+}
+.ct-collect-status-page{
+    height: 35px;
+    margin-top: 10px;
+    text-align: right;
+}

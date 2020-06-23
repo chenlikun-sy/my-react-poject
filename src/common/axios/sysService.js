@@ -196,7 +196,9 @@ function getCollectStateQueryByInfoTest() {
         dc_info: "file Rows:21090 Error Rows:0",
         omc_file_num: 10,
         omc_file_rows: 1908,
-        omc_file_info: "https://www.baidu.com/"
+        omc_file_info: "https://www.baidu.com/",
+        log_path:"https://www.baidu.com/"
+
     });
     list.push({
         province_name: "安徽",
@@ -212,7 +214,8 @@ function getCollectStateQueryByInfoTest() {
         dc_info: "file Rows:2109 Error Rows:10",
         omc_file_num: 10,
         omc_file_rows: 1908,
-        omc_file_info: "https://www.baidu.com/"
+        omc_file_info: "https://www.baidu.com/",
+        log_path:"https://www.baidu.com/"
     });
     return list;
 }

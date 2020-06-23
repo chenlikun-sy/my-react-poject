@@ -1,0 +1,43 @@
+[{
+    "id":"province_name",
+    "name":"省份"
+},{
+    "id":"dc_ip",
+    "name":"dc_ip"
+},{
+    "id":"omc_name",
+    "name":"omc_name"
+},{
+    "id":"type_name",
+    "name":"type_name"
+},{
+    "id":"dc_data_time",
+    "name":"dc_data_time"
+},{
+    "id":"task_run_time",
+    "name":"task_run_time"
+},{
+    "id":"run_secs",
+    "name":"run_secs"
+},{
+    "id":"dc_count",
+    "name":"dc_count"
+},{
+    "id":"dc_rows",
+    "name":"dc_rows"
+},{
+    "id":"dc_info",
+    "name":"dc_info"
+},{
+    "id":"omc_file_num",
+    "name":"omc_file_num"
+},{
+    "id":"omc_file_rows",
+    "name":"omc_file_rows"
+},{
+    "id":"omc_file_info",
+    "name":"omc_file_info"
+},{
+    "id":"log_path",
+    "name":"log_path"
+}]
