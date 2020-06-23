@@ -1,3 +1,27 @@
+//获取省编号数据集合
+export function getProvinceInfoByDic() {
+    var list = getProvinceInfoByDicTest();
+    return new Promise(function (resolve, reject) {
+        resolve(list);
+    });
+}
+
+//获取OMC数据集合
+export function getOmcInfoByDic() {
+    var list = getOmcInfoByDicTest();
+    return new Promise(function (resolve, reject) {
+        resolve(list);
+    });
+}
+
+//获取OMC数据类型集合
+export function getOmcDataTypeInfoByDic() {
+    var list = getOmcDataTypeInfoByDicTest();
+    return new Promise(function (resolve, reject) {
+        resolve(list);
+    });
+}
+
 //采集状态查询 数量信息
 export function getCollectStateQueryByCount(provId, omcId, typeId, beginTime, endTime) {
     var sum = 2;
@@ -46,6 +70,14 @@ export function getQualityInstructions(omcId, typeId, sbeginTime) {
     // });
 }
 
+//获取主机IP地址下拉选择备选值
+export function getHostIpInfoByDic() {
+    var list = getHostIpInfoByDicTest();
+    return new Promise(function (resolve, reject) {
+        resolve(list);
+    });
+}
+
 //系统运行状态查询 数量信息
 export function getSystemRunStateQueryByCount(ipText, beginTime, endTime) {
     var sum = 2;
@@ -62,12 +94,89 @@ export function getSystemRunStateQueryByInfo(ipText, beginTime, endTime, beginIn
     });
 }
 
+//获取主机IP地址下拉选择备选值
+export function getEntityNameInfoByDic() {
+    var list = getEntityNameInfoByDicTest();
+    return new Promise(function (resolve, reject) {
+        resolve(list);
+    });
+}
+
 //系统运行状态 历史状态查询
 export function getSystemHistoryQuery(ipText, entityName, beginTime, endTime) {
     var list = getSystemHistoryQueryTest();
     return new Promise(function (resolve, reject) {
         resolve(list);
     });
+}
+
+function getProvinceInfoByDicTest() {
+    var list = [];
+    list.push({
+        province_id: 630000,
+        province_name: "青海"
+    });
+    list.push({
+        province_id: 620000,
+        province_name: "甘肃"
+    });
+    list.push({
+        province_id: 610000,
+        province_name: "陕西"
+    });
+    list.push({
+        province_id: 210000,
+        province_name: "辽宁"
+    });
+    return list;
+}
+
+function getOmcInfoByDicTest() {
+    var list = [];
+    list.push({
+        omc_id: 3206,
+        omc_name: "JS_OMC6",
+        province_id: 630000,
+        province_name: "青海"
+    });
+    list.push({
+        omc_id: 3208,
+        omc_name: "JS_OMC8",
+        province_id: 630000,
+        province_name: "青海"
+    });
+    list.push({
+        omc_id: 3209,
+        omc_name: "JS_OMC9",
+        province_id: 620000,
+        province_name: "甘肃"
+    });
+    list.push({
+        omc_id: 3201,
+        omc_name: "JS_OMC1",
+        province_id: 610000,
+        province_name: "陕西"
+    });
+    list.push({
+        omc_id: 3202,
+        omc_name: "JS_OMC2",
+        province_id: 210000,
+        province_name: "辽宁"
+    });
+    return list;
+}
+
+function getOmcDataTypeInfoByDicTest() {
+    var list = [];
+    list.push({
+        type_id: 1,
+        type_name: "ZX-PC-1A-2.0"
+    });
+    list.push({
+        type_id: 2,
+        type_name: "ZX-PE-1A-2.0"
+    });
+    return list;
 }
 
 //采集状态查询信息 测试数据集合
@@ -158,6 +267,23 @@ function getQualityQueryByInfoTest() {
     return list;
 }
 
+function getHostIpInfoByDicTest() {
+    var list = [];
+    list.push({
+        ip_id: "192.168.1.1",
+        ip_name: "192.168.1.1"
+    });
+    list.push({
+        ip_id: "192.168.1.2",
+        ip_name: "192.168.1.2"
+    });
+    list.push({
+        ip_id: "192.168.1.3",
+        ip_name: "192.168.1.3"
+    });
+    return list;
+}
+
 function getSystemRunStateQueryByInfoTest() {
     var list = [];
     list.push({
@@ -192,6 +318,23 @@ function getSystemRunStateQueryByInfoTest() {
         description: "top -t 127.1.1.1 run test status OK",
         data: "<data><CPU负荷><![CDATA[27.8]]></CPU负荷><SWAP可用><![CDATA[36912]]></SWAP可用><SWAP可用率><![CDATA[90.11]]></SWAP可用率><SWAP总数><![CDATA[40959]]></SWAP总数><sleep进程数><![CDATA[518]]></sleep进程数><活动进程数><![CDATA[4]]></活动进程数><僵死进程数><![CDATA[0]]></僵死进程数><进程总数><![CDATA[522]]></进程总数><内存可用><![CDATA[31417]]></内存可用><内存可用率><![CDATA[97.84]]></内存可用率><内存总数><![CDATA[32108]]></内存总数><停止进程数><![CDATA[0]]></停止进程数></data>",
         property: "<property><CPU负荷><![CDATA[27.8]]></CPU负荷><SWAP可用><![CDATA[36912]]></SWAP可用><SWAP可用率><![CDATA[90.11]]></SWAP可用率><SWAP总数><![CDATA[40959]]></SWAP总数><sleep进程数><![CDATA[518]]></sleep进程数><活动进程数><![CDATA[4]]></活动进程数><僵死进程数><![CDATA[0]]></僵死进程数><进程总数><![CDATA[522]]></进程总数><内存可用><![CDATA[31417]]></内存可用><内存可用率><![CDATA[97.84]]></内存可用率><内存总数><![CDATA[32108]]></内存总数><停止进程数><![CDATA[0]]></停止进程数></property>"
+    });
+    return list;
+}
+
+function getEntityNameInfoByDicTest(){
+    var list = [];
+    list.push({
+        type_id: "CPU负荷",
+        type_name: "CPU负荷"
+    });
+    list.push({
+        type_id: "SWAP可用",
+        type_name: "SWAP可用"
+    });
+    list.push({
+        type_id: "SWAP可用率",
+        type_name: "SWAP可用率"
     });
     return list;
 }
