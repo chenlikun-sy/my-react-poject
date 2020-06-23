@@ -5,7 +5,7 @@ import {
 } from "../../common/axios/sysService";
 import './index.less'
 import omcJson from '../../../static/config/omc_config.json'
-import { Table, Space, Button, Input, Select } from 'antd'
+import { Table, Space, Button, DatePicker, Select } from 'antd'
 import CtHistorySeachChart from './ct_history_seach_chart/ct_history_seach_chart'
 
 export default class ResumeIndex extends React.Component {
@@ -121,11 +121,11 @@ export default class ResumeIndex extends React.Component {
                     </Space>
 
                     <Space className="ct-history-div-seach-three">
-                       开始时间： <Select  style={{ width: 180 }} value={this.state.textValue} onChange={this.valueChange} />
+                       开始时间： <DatePicker  />
                     </Space>
 
                     <Space className="ct-history-div-seach-four">
-                        结束时间：<Select   style={{ width: 180 }} value={this.state.textValue} onChange={this.valueChange} />
+                        结束时间：<DatePicker  />
                     </Space>
                     <Space>
                         <Button type='primary' onClick={this.valueChange}>查询</Button>
