@@ -1,5 +1,10 @@
 const routes = [
     {
+        title:"简历管理",
+        icon:"file",
+        path:"/resume",
+    },
+    {
         title:"用户管理",
         icon:"user",
         path:"/user",

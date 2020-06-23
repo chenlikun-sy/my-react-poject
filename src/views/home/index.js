@@ -5,8 +5,7 @@ export default class HomeIndex extends React.Component {
     render(){
         return (
             <div>
-                <p>HomeIndex</p>
-                <Button type="primary">hello world</Button>
+               <b>辽宁组公共使用测试框架</b>
             </div>
         )
     }
