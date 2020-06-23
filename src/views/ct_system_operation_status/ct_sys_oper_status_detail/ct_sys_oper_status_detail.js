@@ -132,14 +132,14 @@ class SysOperStatusDetail extends React.Component {
                     </tr>
                     <tr>
                         <td>数据</td>
-                        <td> <table>
+                        <td> <table className="table-ex">
                             {this.setDataDOM()}
 
                         </table></td>
                     </tr>
                     <tr>
                         <td>属性</td>
-                        <td> <table>
+                        <td> <table className="table-ex">
                             {this.setpropertyListDOM()}
 
                         </table>

@@ -1,17 +1,19 @@
 // 系统状态查询
 import React from 'react'
-import { Space, Button, Input, Modal, Table,Tooltip  } from 'antd'
-import './ct_sys_oper_status_query.css'
+import { Space, Button, Pagination, Modal, Table, Tooltip, Select } from 'antd'
+import './ct_sys_oper_status_query.less'
 import SysOperStatusDetail from '../ct_sys_oper_status_detail/ct_sys_oper_status_detail.js'
 import {
-    getSystemRunStateQueryByInfo, getSystemRunStateQueryByCounts
+    getSystemRunStateQueryByInfo, getSystemRunStateQueryByCount, getHostIpInfoByDic
 } from "../../../common/axios/sysService"
 
 class SysOperStatusQuery extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            parameter:{},
+            hostIPList: [],
+            hostIPValue: '',
+            parameter: {},
             visible: false,
             textValue: '10.10.0.18',
             columns: [{
@@ -83,24 +85,32 @@ class SysOperStatusQuery extends React.Component {
             }, {
                 title: '属性',
                 dataIndex: 'data',
-                className:"data-show",
+                className: "data-show",
                 key: 'data',
             }, {
                 title: '数据',
                 dataIndex: 'property',
-                className:"property-show",
+                className: "property-show",
                 key: 'property',
             }
 
             ],
-            data: []
+            data: [],
+            pageSize: 10,//每页10条数据
+            page: 1,//当前页数
+            count: 0,//总条数,
         };
+        this.ipText = null;
+        this.beginTime = null;
+        this.endTime = null;
         // 这边绑定是必要的，这样 `this` 才能在回调函数中使用
         this.valueChange = this.valueChange.bind(this);
     }
     //执行开始 在第一次渲染后调用，只在客户端。
     componentDidMount() {
-        this.getSystemRunStateQuery(0, 1, 2, 0, 500);
+        this.getSystemRunStateQuery(0, 1, 2, 0, 50);
+        this.getQueryByCount(0, 1, 2, 0, 50);
+        this.getHostIpDicQuery();
 
     }
 
@@ -109,11 +119,55 @@ class SysOperStatusQuery extends React.Component {
 
 
     }
+    getHostIpDicQuery(ipText, beginTime, endTime, beginIndex, endIndex) {
+        getHostIpInfoByDic().then(res => {
+            this.getHostIpInfoByDicCompleted(res);
+        });
+    };
+
+    getHostIpInfoByDicCompleted(data) {
+        var list = [];
+        data.forEach(item => {
+            var obj = {
+                ip_id: item.ip_id,
+                ip_name: item.ip_name
+            }
+            list.push(obj);
+        });
+        if (list) {
+            this.setState({
+                hostIPList: list,
+                hostIPValue: list[0].ip_id
+            }, () => {
+                //暂无
+            })
+        }
+
+    }
+
+    getQueryByCount(ipText, beginTime, endTime, beginIndex, endIndex) {
+        this.ipText = ipText;
+        this.beginTime = beginTime;
+        this.endTime = endTime;
+        getSystemRunStateQueryByCount(ipText, beginTime, endTime, beginIndex, endIndex).then(res => {
+            this.getSystemRunStateQueryByCountCompleted(res);
+        });
+    }
+    getSystemRunStateQueryByCountCompleted(count) {
+        this.setState({
+            count: count
+        }, () => {
+            this.getSystemRunStateQuery(this.ipText, this.beginTime, this.endTime, 1, this.state.pageSize)
+        })
+    }
+
     getSystemRunStateQuery(ipText, beginTime, endTime, beginIndex, endIndex) {
         getSystemRunStateQueryByInfo(ipText, beginTime, endTime, beginIndex, endIndex).then(res => {
             this.getSystemRunStateQueryByInfoCompleted(res);
         });
     };
+
+
 
     getSystemRunStateQueryByInfoCompleted(result) {
         var data = [];
@@ -130,7 +184,7 @@ class SysOperStatusQuery extends React.Component {
                 property: result[i].property,
 
             });
-            
+
         }
         if (data !== null) {
             this.setState({
@@ -164,6 +218,27 @@ class SysOperStatusQuery extends React.Component {
         });
         this.getSystemRunStateQuery(0, 1, 2, 0, 500);
     }
+    hostIPChange = (value) => {
+        this.setState({ hostIPValue: value })
+    }
+    //翻页事件
+    pageOnclick = (page, pageSize) => {
+        this.setState({
+            page: page
+        },() => {
+            this.getSystemRunStateQuery(this.ipText, this.beginTime, this.endTime, (page - 1) * this.state.pageSize + 1, page * this.state.pageSize)
+        })
+       
+    }
+    //分页条数改变触发事件
+    onShowSizeChange = (current, pageSize) => {
+        this.setState({
+            page: 1,
+            pageSize: pageSize
+        }, () => {
+            this.getSystemRunStateQuery(this.ipText, this.beginTime, this.endTime, (this.state.page - 1) * this.state.pageSize + 1, this.state.page * this.state.pageSize)
+        })
+    }
 
 
     render() {
@@ -173,7 +248,12 @@ class SysOperStatusQuery extends React.Component {
             <div className="sys-oper-status-query-main">
                 <div className="sys-oper-status-query-top">
                     <Space>
-                        <Input placeholder="请输入主机号" value={this.state.textValue} onChange={this.valueChange} />
+                        <Select className="ct-ip-tool-select" value={this.state.hostIPValue} onChange={this.hostIPChange} >
+                            {this.state.hostIPList.map((item) => {
+                                return <Option value={item.ip_id} key={item.ip_id}>{item.ip_name}</Option>;
+                            })}
+                        </Select>
+                        {/* <Input placeholder="请输入主机号" value={this.state.textValue} onChange={this.valueChange} /> */}
                         <Button type='primary' onClick={this.valueChange}>查询</Button>
                     </Space>
 
@@ -183,7 +263,7 @@ class SysOperStatusQuery extends React.Component {
                     <Table onRow={record => {
                         return {
                             onClick: event => { }, // 点击行
-                            onDoubleClick: event => { 
+                            onDoubleClick: event => {
                                 if (record !== null) {
                                     this.setState({
                                         parameter: record
@@ -198,15 +278,25 @@ class SysOperStatusQuery extends React.Component {
                     }}
                         columns={this.state.columns}
                         dataSource={this.state.data}
-                        pagination={{ pageSize: 50 }}
-                        scroll={{ x: 600, y: 'calc(400px + 10%)', }}
+                        pagination={false}
+                        className="ys-oper-status-query-table"
+                    // scroll={{ x: 600, y: 'calc(400px + 10%)', }}
                     ></Table>
-
                 </div>
+                <div className="ct-sys-oper-page">
+                        <Pagination
+                            showSizeChanger
+                            onChange={this.pageOnclick}
+                            onShowSizeChange={this.onShowSizeChange}
+                            defaultCurrent={this.state.page}
+                            pageSize={this.state.pageSize}
+                            total={this.state.count}
+                            showTotal={(total, range) => `共  ${total}  条数据`}
+                        />
+                    </div>
                 <Modal
                     title="详情"
-                    width="400"
-                    height="400"
+                    wrapClassName={'ant-sys-opt-model-div'}
                     visible={this.state.visible}
                     destroyOnClose="true"
                     onOk={this.handleOk}

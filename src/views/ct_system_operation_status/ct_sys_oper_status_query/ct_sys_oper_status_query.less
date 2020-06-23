@@ -1,0 +1,66 @@
+.sys-oper-status-query-main{
+    display: flex;
+    flex-direction:column ;
+    height: 100%;
+}
+.sys-oper-status-query-top{
+    display: flex;
+    height: 10%;
+}
+.sys-oper-status-query-content{
+    flex: 1;
+    padding: 10px;
+    width: 100%;
+    overflow: auto;
+    height: calc(90% - 35px);
+        .ant-table{
+            height: 100%;
+        }
+        .ant-table-content,.ant-spin-container{
+            height: 100%;
+            width: 100%;
+        }
+        .ant-spin-nested-loading{
+            width: 100%;
+            height: 100%;
+        }
+        .ant-table-wrapper{
+            height: 100%;
+        }
+        .ant-pagination,.ant-table-pagination,.ant-table-pagination-right{
+            display: none;
+        }
+}
+.data-show{
+    display: none;
+}
+.property-show{
+    display: none;
+}
+.ct-ip-tool-select{
+    width: 300px;
+}
+.ant-sys-opt-model-div{
+    .ant-modal-content {
+        height: auto;
+        width: 900px;
+    }
+
+    .ant-modal{
+        left: calc(50% - 450px) !important;
+        top: calc(50% - 300px) !important;
+        width: auto !important;
+    }
+
+    .ant-modal-body{height: auto;}
+}
+
+
+.sys-oper-status-query-table{
+    height: calc(90% - 45px);
+}
+.ct-sys-oper-page{
+    height: 35px;
+    margin-top: 10px;
+    text-align: right;
+}
