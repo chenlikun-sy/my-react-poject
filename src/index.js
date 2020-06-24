@@ -3,6 +3,7 @@ import ReactDom from 'react-dom'
 import { Provider } from "mobx-react"
 import AppRouter from "./router"
 import "./app.less"
+import './antd.dark.css'
 import store from "./store"
 
 //antd 提供了一个 React 组件 ConfigProvider 用于全局配置国际化文案。

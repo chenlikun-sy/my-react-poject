@@ -2,6 +2,7 @@
 import React from 'react'
 import { Space, Button, Pagination, Modal, Table, Tooltip, Select } from 'antd'
 import './ct_sys_oper_status_query.less'
+
 import SysOperStatusDetail from '../ct_sys_oper_status_detail/ct_sys_oper_status_detail.js'
 import {
     getSystemRunStateQueryByInfo, getSystemRunStateQueryByCount, getHostIpInfoByDic
@@ -30,7 +31,6 @@ class SysOperStatusQuery extends React.Component {
                 title: '主机名称',
                 dataIndex: 'host_name',
                 key: 'host_name',
-                width: 150,
                 render: host_name => (
                     <Tooltip placement="topLeft" title={host_name}>
                         {host_name}
@@ -67,10 +67,11 @@ class SysOperStatusQuery extends React.Component {
                 title: '告警级别',
                 dataIndex: 'severity_txt',
                 key: 'severity_txt',
-                render: severity_txt => (
-                    <Tooltip placement="topLeft" title={severity_txt}>
-                        {severity_txt}
-                    </Tooltip>
+                render: record => (
+
+                    <div className={record > 32 ? "first-alarmlevel" : "second-alarmlevel"}>{record}</div>
+
+
                 ),
             }, {
                 title: '描述',
@@ -116,8 +117,18 @@ class SysOperStatusQuery extends React.Component {
 
     // 回收内存
     componentWillUnmount() {
-
-
+        this.setState({
+            hostIPList: [],
+            hostIPValue: '',
+            parameter: {},
+            visible: false,
+            textValue: '',
+            columns: [],
+            data: [],
+            pageSize: 10,//每页10条数据
+            page: 1,//当前页数
+            count: 0,//总条数,
+        })
     }
     getHostIpDicQuery(ipText, beginTime, endTime, beginIndex, endIndex) {
         getHostIpInfoByDic().then(res => {
@@ -225,10 +236,10 @@ class SysOperStatusQuery extends React.Component {
     pageOnclick = (page, pageSize) => {
         this.setState({
             page: page
-        },() => {
+        }, () => {
             this.getSystemRunStateQuery(this.ipText, this.beginTime, this.endTime, (page - 1) * this.state.pageSize + 1, page * this.state.pageSize)
         })
-       
+
     }
     //分页条数改变触发事件
     onShowSizeChange = (current, pageSize) => {
@@ -284,16 +295,16 @@ class SysOperStatusQuery extends React.Component {
                     ></Table>
                 </div>
                 <div className="ct-sys-oper-page">
-                        <Pagination
-                            showSizeChanger
-                            onChange={this.pageOnclick}
-                            onShowSizeChange={this.onShowSizeChange}
-                            defaultCurrent={this.state.page}
-                            pageSize={this.state.pageSize}
-                            total={this.state.count}
-                            showTotal={(total, range) => `共  ${total}  条数据`}
-                        />
-                    </div>
+                    <Pagination
+                        showSizeChanger
+                        onChange={this.pageOnclick}
+                        onShowSizeChange={this.onShowSizeChange}
+                        defaultCurrent={this.state.page}
+                        pageSize={this.state.pageSize}
+                        total={this.state.count}
+                        showTotal={(total, range) => `共  ${total}  条数据`}
+                    />
+                </div>
                 <Modal
                     title="详情"
                     wrapClassName={'ant-sys-opt-model-div'}
