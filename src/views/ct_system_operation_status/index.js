@@ -9,9 +9,7 @@ export default class ResumeIndex extends React.Component {
 
     render(){
         return (
-            <div>
                 <SysOperStatusQuery></SysOperStatusQuery>
-            </div>
         )
     }
 }
