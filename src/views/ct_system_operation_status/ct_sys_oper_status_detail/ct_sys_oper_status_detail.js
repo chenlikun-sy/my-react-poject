@@ -145,11 +145,11 @@ class SysOperStatusDetail extends React.Component {
                         </table>
                         </td>
                     </tr>
-                    <tr>
+                    <tr className="td-height">
                         <td className="tr-width">描述</td>
-                        <td>{datas.description}</td>
+                        <td >{datas.description}</td>
                     </tr>
-                </table>
+                </table> 
             </div>
         )
     }
