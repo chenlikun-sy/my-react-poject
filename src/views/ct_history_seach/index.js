@@ -111,6 +111,8 @@ export default class ResumeIndex extends React.Component {
                 dataIndex: 'check_time',
                 key: 'check_time',
                 width: 200,
+                height:30,
+                size:"small",
                 sorter: (a, b) => new Date(a.check_time) - new Date(b.check_time),
                 ellipsis: true
             },
@@ -119,6 +121,8 @@ export default class ResumeIndex extends React.Component {
                 dataIndex: 'severity_txt',
                 key: 'severity_txt',
                 width: 200,
+                height:30,
+                size:"small",
                 sorter: (a, b) => a.severity_txt.length - b.severity_txt.length,
                 ellipsis: true
             },
@@ -127,6 +131,8 @@ export default class ResumeIndex extends React.Component {
                 dataIndex: 'value',
                 key: 'value',
                 width: 200,
+                height:30,
+                size:"small",
                 sorter: (a, b) => a.value - b.value,
                 ellipsis: true
             },
@@ -134,6 +140,8 @@ export default class ResumeIndex extends React.Component {
                 title: '描述',
                 dataIndex: 'host_name',
                 key: 'host_name',
+                height:30,
+                size:"small",
                 sorter: (a, b) => a.host_name.length - b.host_name.length,
                 ellipsis: true
             }]
@@ -226,7 +234,7 @@ export default class ResumeIndex extends React.Component {
 
                 </div>
                 <div className="ct-history-div-table">
-                    <Table  columns={this.state.columns} dataSource={this.state.data} sortDirections={['ascend', 'descend']} pagination={false} />
+                    <Table  ref="table" columns={this.state.columns} dataSource={this.state.data} sortDirections={['ascend', 'descend']} pagination={false} />
                 </div>
                 <div className="ct-history-div-chart">
                     <CtHistorySeachChart dataSource={this.state.data} entityName={this.state.entityName}></CtHistorySeachChart>
