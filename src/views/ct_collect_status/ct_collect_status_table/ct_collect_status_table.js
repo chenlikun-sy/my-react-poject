@@ -147,6 +147,7 @@ export default class CtCollectStatusTable extends React.Component {
                         dataSource={this.state.dataSource}
                         pagination={false}
                         bordered
+                       
                     />
                 </div>
                 <div className="ct-collect-status-page">
@@ -184,9 +185,11 @@ export default class CtCollectStatusTable extends React.Component {
             var obj = {};
             obj.title = item.name;
             obj.dataIndex = item.id;
-            // obj.ellipsis = {
-            //     showTitle: false,
-            // };
+            obj.with = 800;
+            obj.textWrap='word-break';
+            obj.ellipsis = {
+                showTitle: false,
+            };
             obj.key = item.id;
             obj.align = 'center';
             obj.render = (text, record) => (
@@ -194,6 +197,10 @@ export default class CtCollectStatusTable extends React.Component {
                     {text}
                 </Tooltip>
             );
+            // obj.sorter = {
+            //     compare: (a, b) => a[item.name] - b[item.name],
+            //     multiple: 3,
+            // }
 
             if (item.id === "log_path") {
                 obj.render = (text, record) =>
