@@ -75,7 +75,7 @@ class SysOperStatusDetail extends React.Component {
             let dataDOM = this.state.dataList.map((item, index) => {
                 return (
                     <tr>
-                        <td>{item.name}</td>
+                        <td className="tr-width">{item.name}</td>
                         <td>{item.value}</td>
                     </tr>
                 )
@@ -91,7 +91,7 @@ class SysOperStatusDetail extends React.Component {
             let dataDOM = this.state.propertyList.map((item, index) => {
                 return (
                     <tr>
-                        <td>{item.name}</td>
+                        <td className="tr-width">{item.name}</td>
                         <td>{item.value}</td>
                     </tr>
                 )
@@ -111,34 +111,34 @@ class SysOperStatusDetail extends React.Component {
             <div className="cy-sys-opter-detail-main">
                 <table className="table-ex">
                     <tr>
-                        <td>IP主机</td>
+                        <td className="tr-width">IP主机</td>
                         <td>{datas.host_ip}</td>
                     </tr>
                     <tr>
-                        <td>主机名称</td>
+                        <td className="tr-width">主机名称</td>
                         <td>{datas.host_name}</td>
                     </tr>
                     <tr>
-                        <td>检查时间</td>
+                        <td className="tr-width">检查时间</td>
                         <td>{datas.check_time}</td>
                     </tr>
                     <tr>
-                        <td>所属组</td>
+                        <td className="tr-width">所属组</td>
                         <td>{datas.entity_group}</td>
                     </tr>
                     <tr>
-                        <td>状态</td>
+                        <td className="tr-width">状态</td>
                         <td>{datas.severity_txt}</td>
                     </tr>
                     <tr>
-                        <td>数据</td>
+                        <td className="tr-width">数据</td>
                         <td> <table className="table-ex">
                             {this.setDataDOM()}
 
                         </table></td>
                     </tr>
                     <tr>
-                        <td>属性</td>
+                        <td className="tr-width">属性</td>
                         <td> <table className="table-ex">
                             {this.setpropertyListDOM()}
 
@@ -146,7 +146,7 @@ class SysOperStatusDetail extends React.Component {
                         </td>
                     </tr>
                     <tr>
-                        <td>描述</td>
+                        <td className="tr-width">描述</td>
                         <td>{datas.description}</td>
                     </tr>
                 </table>

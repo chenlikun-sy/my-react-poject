@@ -21,7 +21,7 @@ class SysOperStatusQuery extends React.Component {
                 title: '主机IP',
                 dataIndex: 'host_ip',
                 key: 'host_ip',
-                width: 150,
+                width: 100,
                 align:"center",
                 render: host_ip => (
                     <Tooltip placement="topLeft" title={host_ip}>
@@ -33,6 +33,7 @@ class SysOperStatusQuery extends React.Component {
                 dataIndex: 'host_name',
                 key: 'host_name',
                 align:"center",
+                width: 100,
                 sorter: (a, b) => a.host_name.length - b.host_name.length,
                 render: host_name => (
                     <Tooltip placement="topLeft" title={host_name}>
@@ -44,6 +45,7 @@ class SysOperStatusQuery extends React.Component {
                 dataIndex: 'check_time',
                 key: 'check_time',
                 align:"center",
+                width: 150,
                 sorter: (a, b) => a.check_time.length - b.check_time.length,
                 render: check_time => (
                     <Tooltip placement="topLeft" title={check_time}>
@@ -54,6 +56,7 @@ class SysOperStatusQuery extends React.Component {
                 title: '检查项组',
                 dataIndex: 'entity_group',
                 key: 'entity_group',
+                width: 100,
                 align:"center",
                 sorter: (a, b) => a.entity_group.length - b.entity_group.length,
                 render: entity_group => (
@@ -66,6 +69,7 @@ class SysOperStatusQuery extends React.Component {
                 dataIndex: 'entity_name',
                 key: 'entity_name',
                 align:"center",
+                width: 100,
                 sorter: (a, b) => a.entity_name.length - b.entity_name.length,
                 render: entity_name => (
                     <Tooltip placement="topLeft" title={entity_name}>
@@ -74,6 +78,7 @@ class SysOperStatusQuery extends React.Component {
                 ),
             }, {
                 title: '告警级别',
+                width: 100,
                 dataIndex: 'severity_txt',
                 key: 'severity_txt',
                 align:"center",
@@ -88,7 +93,7 @@ class SysOperStatusQuery extends React.Component {
                 title: '描述',
                 dataIndex: 'description',
                 key: 'description',
-                width: 300,
+                width: 400,
                 render: description => (
                     <Tooltip placement="topLeft" title={description}>
                         {description}
