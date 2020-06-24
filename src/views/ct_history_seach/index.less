@@ -1,4 +1,4 @@
-
+@bg:#c3c1c1;
 .ct-history-div{
     width: 100%;
     height: 100%;
@@ -11,6 +11,13 @@
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
+    .ant-picker-suffix{
+        display: none;
+    }
+    .ant-btn-primary{
+        background-color: #141414;
+        border-color: #303030;
+    }
 }
 
 .ct-history-div-seach>div{
@@ -18,7 +25,8 @@
 }
 
 .ct-history-div-table{
-    height: 40%;
+    height: 50%;
+    overflow: auto !important;
     .ant-table{
         height: 100%;
     }
@@ -34,17 +42,49 @@
         height: 100%;
     }
     .ant-pagination,.ant-table-pagination,.ant-table-pagination-right{
-        display: none;
+        // display: none;
+    }
+    .ant-table-thead > tr > th, .ant-table-tbody > tr > td, .ant-table tfoot > tr > th, .ant-table tfoot > tr > td{
+        padding: 8px 8px;
+        text-align: center;
+    }
+    .ant-table-column-sorters{
+        padding: 2px 2px;
+    }
+    .ant-table-container{
+        background: #141414;
     }
 }
+div::-webkit-scrollbar{
+    width: 7px;
+    border-radius: 4px;
+}
+div::-webkit-scrollbar-track{
+    background-color: #c3c1c1;
+
+}
+div::-webkit-scrollbar-thumb{
+    background-color:rgba(0, 0, 0, 0.65);
+}
+div::-webkit-scrollbar-track-piece{
+    background-color: #303030;
+    // border-radius: 4px;
+}
+div::-webkit-scrollbar-corner{
+    border-radius: 4px;
+}
+
+.ct-history-div-table::-webkit-scrollbar {
+    width: 2px !important;
+}
+
+
 .ct-history-div-chart{
     flex:1;
     // background-color: red;
 }
-
-.ct-history-div-seach-first{}
-.ct-history-div-seach-second{}
-.ct-history-div-seach-three{}
-.ct-history-div-seach-four{}
+.ct-history-div-seach-three{
+    margin-right: 8px !important;
+}
 
 

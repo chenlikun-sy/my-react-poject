@@ -40,6 +40,9 @@ export default class ReactEchartTest extends React.Component {
         labelColor: "#000",
         //是否显示showLegend
         showLegend: false,
+        //图例大小的设置
+        legendWidth:30,
+        legendHeight:30,
         gridTop: "20%",
         gridBottom: "0%",
         gridLeft: "3%",
@@ -71,10 +74,17 @@ export default class ReactEchartTest extends React.Component {
         //两柱图覆盖比例
         barGap: "-40%",
         showSymbol: true,
+
+        //Symbol大小
+        symbolSize:10,
+        //symbol样式
+        symbolType:'circle',
         //y轴单位
         isShowyAxisname: '',
         //是否双坐标轴
         doubleYAxis: false,
+        //symbol上文字颜色
+        itemStyleLabel:'#fff'
 
     }
 
@@ -103,15 +113,20 @@ export default class ReactEchartTest extends React.Component {
             legend: {
                 show: this.props.showLegend,
                 x: this.props.showLegendX,
-                itemWidth: 30,
-                itemHeight: 30,
+                itemWidth: this.props.legendWidth,
+                itemHeight: this.props.legendHeight,
+                icon:this.props.legendIcon,
                 itemGap: 30,
                 right: this.props.showRightLegend,
+                padding:[0,0,0,75],
                 top: this.props.showLegendTop,
                 textStyle: {
                     //图例文字的样式
                     color: "#fff",
                     fontSize: this.props.legendFontSize
+                },
+                itemStyle:{
+
                 },
                 data: []
             },
@@ -275,8 +290,8 @@ export default class ReactEchartTest extends React.Component {
                     }
 
                     if (data[i].chartType === "line") {
-                        dataobj.symbolSize = 12;
-                        dataobj.symbol = "circle";
+                        dataobj.symbolSize = this.props.symbolSize;
+                        dataobj.symbol = this.props.symbolType;
 
                         if (data[i].smooth) {
                             dataobj.smooth = true; //这个是把线变成曲线
@@ -288,6 +303,12 @@ export default class ReactEchartTest extends React.Component {
                         if (data[i].lineWidth) {
                             dataobj.itemStyle = {
                                 normal: {
+                                    label:{
+                                        show:true,
+                                        textStyle:{
+                                            color:this.props.itemStyleLabel
+                                        }
+                                    },
                                     color: data[i].color,
                                     lineStyle: {
                                         width: data[i].lineWidth //设置线条粗细
@@ -329,6 +350,7 @@ export default class ReactEchartTest extends React.Component {
                         if (data[i].barBorderRadius) {
                             dataobj.itemStyle = {
                                 normal: {
+                                    
                                     color: data[i].color,
                                     lineStyle: {
                                         width: data[i].lineWidth //设置线条粗细
@@ -362,6 +384,14 @@ export default class ReactEchartTest extends React.Component {
                             dataobj.data.push(data[i].data[m].value);
                         }
                     }
+                    // dataobj.itemLabel={
+                    //     label:{
+                    //         color:'#fff'
+                    //     },
+                    //     itemStyle:{
+                    //         color:'#fff'
+                    //     },
+                    // }
                     dataobj.data.userObject = data[i];
                     option.series.push(dataobj);
                 }

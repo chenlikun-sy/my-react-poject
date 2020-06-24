@@ -328,6 +328,10 @@ function getSystemRunStateQueryByInfoTest() {
 function getEntityNameInfoByDicTest(){
     var list = [];
     list.push({
+        type_id: "虚拟内存",
+        type_name: "虚拟内存"
+    });
+    list.push({
         type_id: "CPU负荷",
         type_name: "CPU负荷"
     });
@@ -338,6 +342,10 @@ function getEntityNameInfoByDicTest(){
     list.push({
         type_id: "SWAP可用率",
         type_name: "SWAP可用率"
+    });
+    list.push({
+        type_id: "CPU内存检",
+        type_name: "CPU内存检"
     });
     return list;
 }
@@ -392,11 +400,83 @@ function getSystemHistoryQueryTest() {
     list.push({
         host_ip: "127.1.1.3",
         host_name: "smp123-zhang",
-        check_time: "2020-2-5 08:10:10",
+        check_time: "2020-2-5 10:10:10",
         entity_group: "基础检查",
         entity_name: "虚拟内存",
         severity_txt: "正常状态",
         value: 20.5
+    });
+    list.push({
+        host_ip: "127.1.1.3",
+        host_name: "smp123-zhang",
+        check_time: "2020-2-5 11:10:10",
+        entity_group: "基础检查",
+        entity_name: "虚拟内存",
+        severity_txt: "正常状态",
+        value: 32.5
+    });
+    list.push({
+        host_ip: "127.1.1.3",
+        host_name: "smp123-zhang",
+        check_time: "2020-2-5 12:10:10",
+        entity_group: "基础检查",
+        entity_name: "虚拟内存",
+        severity_txt: "正常状态",
+        value: 20.5
+    });
+    list.push({
+        host_ip: "127.1.1.3",
+        host_name: "smp123-zhang123",
+        check_time: "2020-2-5 13:10:10",
+        entity_group: "基础检查",
+        entity_name: "虚拟内存",
+        severity_txt: "正常状态",
+        value: 20.5
+    });
+    list.push({
+        host_ip: "127.1.1.3",
+        host_name: "smp123-zhang",
+        check_time: "2020-2-5 14:10:10",
+        entity_group: "基础检查",
+        entity_name: "虚拟内存",
+        severity_txt: "正常状态",
+        value: 20.5
+    });
+    list.push({
+        host_ip: "127.1.1.3",
+        host_name: "smp123-zhang",
+        check_time: "2020-2-5 15:10:10",
+        entity_group: "基础检查",
+        entity_name: "虚拟内存",
+        severity_txt: "正常状态",
+        value: 15.5
+    });
+    list.push({
+        host_ip: "127.1.1.3",
+        host_name: "smp123-zhang",
+        check_time: "2020-2-5 16:10:10",
+        entity_group: "基础检查",
+        entity_name: "虚拟内存",
+        severity_txt: "正常状态",
+        value: 19.5
+    });
+    list.push({
+        host_ip: "127.1.1.3",
+        host_name: "smp123-zhang",
+        check_time: "2020-2-5 17:10:10",
+        entity_group: "基础检查",
+        entity_name: "虚拟内存",
+        severity_txt: "正常状态",
+        value: 27.5
+    });
+    list.push({
+        host_ip: "127.1.1.3",
+        host_name: "smp123-zhang",
+        check_time: "2020-2-5 18:10:10",
+        entity_group: "基础检查",
+        entity_name: "虚拟内存",
+        severity_txt: "正常状态",
+        value: 30.5
     });
     return list;
 }
