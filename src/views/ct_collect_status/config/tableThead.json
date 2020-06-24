@@ -1,43 +1,43 @@
 [{
     "id":"province_name",
-    "name":"省份"
+    "name":"省名称"
 },{
     "id":"dc_ip",
-    "name":"dc_ip"
+    "name":"采集机IP地址"
 },{
     "id":"omc_name",
-    "name":"omc_name"
+    "name":"OMC名称"
 },{
     "id":"type_name",
-    "name":"type_name"
+    "name":"数据类型"
 },{
     "id":"dc_data_time",
-    "name":"dc_data_time"
+    "name":"数据时间"
 },{
     "id":"task_run_time",
-    "name":"task_run_time"
+    "name":"任务运行开始时间"
 },{
     "id":"run_secs",
-    "name":"run_secs"
+    "name":"运行时长"
 },{
     "id":"dc_count",
-    "name":"dc_count"
+    "name":"采集次数"
 },{
     "id":"dc_rows",
-    "name":"dc_rows"
+    "name":"采集数据条数"
 },{
     "id":"dc_info",
-    "name":"dc_info"
+    "name":"采集结果说明"
 },{
     "id":"omc_file_num",
-    "name":"omc_file_num"
+    "name":"OMC上文件数"
 },{
     "id":"omc_file_rows",
-    "name":"omc_file_rows"
+    "name":"数据文件总记录条数"
 },{
     "id":"omc_file_info",
-    "name":"omc_file_info"
+    "name":"OMC文件信息"
 },{
     "id":"log_path",
-    "name":"log_path"
+    "name":"采集日志文件"
 }]

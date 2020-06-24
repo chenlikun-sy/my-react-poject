@@ -1,14 +1,13 @@
 import React from 'react'
-import { Select, Input, DatePicker, Button } from 'antd'
+import { Select, Input, DatePicker, Button, Modal } from 'antd'
 
-import moment from 'moment';
+import { ExclamationCircleOutlined } from '@ant-design/icons';
 
-import './ct_collect_status_tool.css'
+import './ct_collect_status_tool.less'
 
 import {
     getProvinceInfoByDic, getOmcInfoByDic, getOmcDataTypeInfoByDic
 } from "../../../common/axios/sysService";
-import { List } from 'antd/lib/form/Form';
 
 export default class CtCollectStatusTool extends React.Component {
     constructor(props) {
@@ -22,7 +21,9 @@ export default class CtCollectStatusTool extends React.Component {
             typeList: [],//数据类型集合
             typeValue: '',//数据类型选中集合
             start_time: '',//开始时间
-            end_time: ''//结束时间
+            end_time: '',//结束时间
+            visible: false,//模态窗显示隐藏
+            alertText: ''//alert提示信息
         }
 
     }
@@ -136,46 +137,103 @@ export default class CtCollectStatusTool extends React.Component {
         this.setState({ typeValue: value })
     }
 
-    //开始时间结束时间点击事件
-    timeOnChange = (dates, dateStrings) => {
+    //开始时间点击事件
+    startTimeChange = (value, dateString) => {
         this.setState({
-            start_time: dateStrings[0],
-            end_time: dateStrings[1]
+            start_time: dateString
         })
     }
 
-    searchData = () => {
-        this.props.toolClick(this.state.provinceValue,this.state.omcValue,this.state.typeValue,this.state.start_time,this.state.end_time);
+    //结束时间点击事件
+    endTimeChange = (value, dateString) => {
+        this.setState({
+            end_time: dateString
+        })
     }
+
+    // //模态窗关闭事件
+    // handleCancel = () => {
+    //     this.setState({
+    //         visible: false
+    //     })
+    // }
+
+    //查询
+    searchData = () => {
+        if (!this.state.start_time) {
+            this.confirm('请选择开始时间！')
+            // this.setState({
+            //     visible: true,
+            //     alertText: '请选择开始时间！'
+            // })
+            return
+        }
+        if (!this.state.end_time) {
+            this.confirm('请选择结束时间！')
+            return
+        }
+        if (new Date(this.state.start_time).getTime() >= new Date(this.state.end_time).getTime()) {
+            this.confirm('开始时间不能大于结束时间！')
+            return
+        }
+        this.props.toolClick(this.state.provinceValue, this.state.omcValue, this.state.typeValue, this.state.start_time, this.state.end_time);
+    }
+
+    confirm(text) {
+        Modal.confirm({
+          title: '提示',
+          icon: <ExclamationCircleOutlined />,
+          content: text,
+          okText: '确认'
+        });
+      }
 
     render() {
         const { Option } = Select;
         const { RangePicker } = DatePicker;
         return (
             <div className="ct-collect-status-tool">
+                <div className="ct-collect-status-tool-title">省份</div>
                 <Select className="ct-collect-status-tool-select" value={this.state.provinceValue} onChange={this.provinceChange} >
                     {this.state.provinceList.map((item) => {
                         return <Option value={item.province_id} key={item.province_id}>{item.province_name}</Option>;
                     })}
                 </Select>
+                <div className="ct-collect-status-tool-title">OMC名称</div>
                 <Select className="ct-collect-status-tool-select" value={this.state.omcValue} onChange={this.omcChange} >
                     {this.state.omcList.map((item) => {
                         return <Option value={item.omc_id} key={item.omc_id}>{item.omc_name}</Option>;
                     })}
                 </Select>
+                <div className="ct-collect-status-tool-title">数据类型</div>
                 <Select className="ct-collect-status-tool-select" value={this.state.typeValue} onChange={this.typeChange} >
                     {this.state.typeList.map((item) => {
                         return <Option value={item.type_id} key={item.type_id}>{item.type_name}</Option>;
                     })}
                 </Select>
-                <RangePicker
+                <div className="ct-collect-status-tool-title">时间范围</div>
+                <DatePicker className="ct-collect-status-tool-time" showTime onChange={this.startTimeChange} />
+                {/* <RangePicker
                     className="ct-collect-status-tool-time"
                     showTime
                     format="YYYY/MM/DD HH:mm:ss"
                     onChange={this.timeOnChange}
-                    defaultValue={[moment(new Date().toLocaleDateString(), 'YYYY-MM-DD'), moment(new Date().toLocaleDateString(), 'YYYY-MM-DD')]}
-                />
-                <Button type="primary"  onClick={this.searchData}>查询</Button>
+                    defaultValue={[moment(new Date(new Date().getTime() - 24 * 60 * 60 * 1000).toLocaleDateString(), 'YYYY-MM-DD'), moment(new Date().toLocaleDateString(), 'YYYY-MM-DD')]}
+                /> */}
+                <div className="ct-collect-status-tool-title">至</div>
+                <DatePicker className="ct-collect-status-tool-time" showTime onChange={this.endTimeChange} />
+                <Button className="ct-collect-status-tool-button" type="primary" onClick={this.searchData}>查询</Button>
+
+                {/* <Modal
+                    title="提示"
+                    visible={this.state.visible}
+                    onCancel={this.handleCancel}
+                    onOk={this.handleCancel}
+                    wrapClassName={'ct-collect-status-tool-modal'}
+                >
+                    {this.state.alertText}
+
+                </Modal> */}
             </div>
         )
     }

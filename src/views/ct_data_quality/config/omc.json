@@ -1,0 +1,36 @@
+[{
+    "id":1,
+    "name":"OMC12",
+    "img1":"static/img/ct_data_quality/u2747.svg",
+    "img2":"static/img/ct_data_quality/u2748.svg"
+},{
+    "id":2,
+    "name":"OMC13",
+    "img1":"static/img/ct_data_quality/u2747.svg",
+    "img2":"static/img/ct_data_quality/u2748.svg"
+},{
+    "id":3,
+    "name":"OMC14",
+    "img1":"static/img/ct_data_quality/u2747.svg",
+    "img2":"static/img/ct_data_quality/u2748.svg"
+},{
+    "id":4,
+    "name":"OMC15",
+    "img1":"static/img/ct_data_quality/u2747.svg",
+    "img2":"static/img/ct_data_quality/u2748.svg"
+},{
+    "id":5,
+    "name":"OMC16",
+    "img1":"static/img/ct_data_quality/u2747.svg",
+    "img2":"static/img/ct_data_quality/u2748.svg"
+},{
+    "id":6,
+    "name":"OMC17",
+    "img1":"static/img/ct_data_quality/u2747.svg",
+    "img2":"static/img/ct_data_quality/u2748.svg"
+},{
+    "id":7,
+    "name":"OMC18",
+    "img1":"static/img/ct_data_quality/u2747.svg",
+    "img2":"static/img/ct_data_quality/u2748.svg"
+}]

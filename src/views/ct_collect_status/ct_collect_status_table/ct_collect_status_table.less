@@ -3,14 +3,16 @@
     padding: 10px;
     width: 100%;
     overflow: auto;
-    background-color: #eee;
+    // background-color: #eee;
 }
 
 .ct-collect-status-tabletop{
-    height: calc(100% - 45px);
+    height: 100%;
+    // overflow: auto;
+
 }
 .ct-collect-status-table .ant-table-thead>tr>th{
-    min-width: 90px;
+    //min-width: 90px;
 }
 .ct-collect-status-page{
     height: 35px;
@@ -38,4 +40,45 @@
         background-color: #c3c1c1;
         }
 
+}
+.ct-collect-status-tablecontent{
+    flex: 1;
+    padding: 10px;
+    width: 100%;
+    overflow: auto;
+    height: calc(100% - 45px);
+        
+        .ant-table{
+            height: 100%;
+        }
+        .ant-table-content,.ant-spin-container,.ant-table-container{
+            height: 100%;
+            width: 100%;
+        }
+        .ant-spin-nested-loading{
+            width: 100%;
+            height: 100%;
+        }
+        .ant-table-wrapper{
+            height: 100%;
+        }
+        .ant-pagination,.ant-table-pagination,.ant-table-pagination-right{
+            display: none;
+        }
+        .ant-table.ant-table-bordered thead > tr > th, .ant-table.ant-table-bordered tbody > tr > td, .ant-table.ant-table-bordered tfoot > tr > th, .ant-table.ant-table-bordered tfoot > tr > td{
+            border-right: 1px solid #303030 !important;
+        }
+        .ant-table.ant-table-bordered .ant-table-container{
+            //border-left: 0 !important;
+        }
+        .ant-table-thead > tr > th, .ant-table-tbody > tr > td, .ant-table tfoot > tr > th, .ant-table tfoot > tr > td{
+            padding: 10px !important;
+        }
+        .ant-table table{
+            height: 100%;
+        }
+        .ant-table-column-sorters{
+            padding: 2px 2px;
+        }
+        
 }

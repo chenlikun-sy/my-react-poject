@@ -1,5 +1,5 @@
 import React from 'react'
-import { Table, Pagination, Modal } from 'antd'
+import { Table, Pagination, Modal, Tooltip } from 'antd'
 
 import './ct_collect_status_table.less'
 
@@ -95,7 +95,7 @@ export default class CtCollectStatusTable extends React.Component {
 
 
     getHttpTextData(item) {
-        getCollectStateQueryByCount(url).then(res => {
+        getCollectStateTextByUrl(url).then(res => {
             this.getHttpTextDataCompleted(res);
         });
     }
@@ -140,7 +140,15 @@ export default class CtCollectStatusTable extends React.Component {
     render() {
         return (
             <div className="ct-collect-status-table">
-                <Table className="ct-collect-status-tabletop" columns={this.state.columns} dataSource={this.state.dataSource} pagination={false} />
+                <div className="ct-collect-status-tablecontent">
+                    <Table
+                        className="ct-collect-status-tabletop"
+                        columns={this.state.columns}
+                        dataSource={this.state.dataSource}
+                        pagination={false}
+                        bordered
+                    />
+                </div>
                 <div className="ct-collect-status-page">
                     <Pagination
                         showSizeChanger
@@ -162,7 +170,7 @@ export default class CtCollectStatusTable extends React.Component {
                     <p>{this.state.urlData}</p>
                     <p>{this.state.urlData}</p>
                     <p>{this.state.urlData}</p>
-                    
+
                 </Modal>
 
             </div>
@@ -174,17 +182,30 @@ export default class CtCollectStatusTable extends React.Component {
         var theadList = [];
         theadJson.forEach((item) => {
             var obj = {};
-            obj.dataIndex = item.id;
             obj.title = item.name;
+            obj.dataIndex = item.id;
+            obj.ellipsis = {
+                showTitle: false,
+            };
+            obj.key = item.id;
             obj.align = 'center';
+            obj.render = (text, record) => (
+                <Tooltip placement="topLeft" title={text}>
+                    {text}
+                </Tooltip>
+            );
+
             if (item.id === "log_path") {
-                obj.render = (text, record) => <a style={{ cursor: 'pointer' }} onClick={() => this.clickTableData(text, record)
-                }> {text}</a >
+                obj.render = (text, record) =>
+                    <Tooltip placement="topLeft" title={text}>
+                        <a style={{ cursor: 'pointer' }} onClick={() => this.clickTableData(text, record)}> {text}</a >
+                    </Tooltip >
             }
             theadList.push(obj);
         })
         this.setState({
             columns: theadList
         })
+
     }
 }
