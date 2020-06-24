@@ -13,6 +13,7 @@
     padding: 10px;
     width: 100%;
     overflow: auto;
+    min-height: 450px;
     height: calc(90% - 35px);
         .ant-table{
             height: 100%;
@@ -30,6 +31,11 @@
         }
         .ant-pagination,.ant-table-pagination,.ant-table-pagination-right{
             display: none;
+        }
+        .ant-table-thead > tr > th, .ant-table-tbody > tr > td, .ant-table tfoot > tr > th, .ant-table tfoot > tr > td {
+            position: relative;
+            padding: 8px 8px;
+            overflow-wrap: break-word;
         }
 }
 .data-show{
@@ -67,8 +73,10 @@
     text-align: right;
 }
 .first-alarmlevel{
-   background-color: lawngreen;
+   background-color: red;
+  
 }
 .second-alarmlevel{
-    background-color:red;
+    background-color:#52c41a;
+    color:#000
 }

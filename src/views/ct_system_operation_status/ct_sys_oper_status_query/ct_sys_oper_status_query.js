@@ -22,6 +22,7 @@ class SysOperStatusQuery extends React.Component {
                 dataIndex: 'host_ip',
                 key: 'host_ip',
                 width: 150,
+                align:"center",
                 render: host_ip => (
                     <Tooltip placement="topLeft" title={host_ip}>
                         {host_ip}
@@ -31,6 +32,8 @@ class SysOperStatusQuery extends React.Component {
                 title: '主机名称',
                 dataIndex: 'host_name',
                 key: 'host_name',
+                align:"center",
+                sorter: (a, b) => a.host_name.length - b.host_name.length,
                 render: host_name => (
                     <Tooltip placement="topLeft" title={host_name}>
                         {host_name}
@@ -40,6 +43,8 @@ class SysOperStatusQuery extends React.Component {
                 title: '更新时间',
                 dataIndex: 'check_time',
                 key: 'check_time',
+                align:"center",
+                sorter: (a, b) => a.check_time.length - b.check_time.length,
                 render: check_time => (
                     <Tooltip placement="topLeft" title={check_time}>
                         {check_time}
@@ -49,6 +54,8 @@ class SysOperStatusQuery extends React.Component {
                 title: '检查项组',
                 dataIndex: 'entity_group',
                 key: 'entity_group',
+                align:"center",
+                sorter: (a, b) => a.entity_group.length - b.entity_group.length,
                 render: entity_group => (
                     <Tooltip placement="topLeft" title={entity_group}>
                         {entity_group}
@@ -58,6 +65,8 @@ class SysOperStatusQuery extends React.Component {
                 title: '检查项',
                 dataIndex: 'entity_name',
                 key: 'entity_name',
+                align:"center",
+                sorter: (a, b) => a.entity_name.length - b.entity_name.length,
                 render: entity_name => (
                     <Tooltip placement="topLeft" title={entity_name}>
                         {entity_name}
@@ -67,6 +76,8 @@ class SysOperStatusQuery extends React.Component {
                 title: '告警级别',
                 dataIndex: 'severity_txt',
                 key: 'severity_txt',
+                align:"center",
+                sorter: (a, b) => a.severity_txt.length - b.severity_txt.length,
                 render: record => (
 
                     <div className={record > 32 ? "first-alarmlevel" : "second-alarmlevel"}>{record}</div>
@@ -105,7 +116,7 @@ class SysOperStatusQuery extends React.Component {
         this.beginTime = null;
         this.endTime = null;
         // 这边绑定是必要的，这样 `this` 才能在回调函数中使用
-        this.valueChange = this.valueChange.bind(this);
+        this.selectChange = this.selectChange.bind(this);
     }
     //执行开始 在第一次渲染后调用，只在客户端。
     componentDidMount() {
@@ -223,11 +234,8 @@ class SysOperStatusQuery extends React.Component {
         });
     };
     //调用方法
-    valueChange = (e) => {
-        this.setState({
-            textValue: e.target.value
-        });
-        this.getSystemRunStateQuery(0, 1, 2, 0, 500);
+    selectChange = (e) => {
+        this.getSystemRunStateQuery(this.setState.hostIPValue, 1, 2, 0, 500);
     }
     hostIPChange = (value) => {
         this.setState({ hostIPValue: value })
@@ -265,7 +273,7 @@ class SysOperStatusQuery extends React.Component {
                             })}
                         </Select>
                         {/* <Input placeholder="请输入主机号" value={this.state.textValue} onChange={this.valueChange} /> */}
-                        <Button type='primary' onClick={this.valueChange}>查询</Button>
+                        <Button type='primary' onClick={this.selectChange}>查询</Button>
                     </Space>
 
                 </div>
