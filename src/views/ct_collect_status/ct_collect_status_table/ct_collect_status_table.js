@@ -184,9 +184,9 @@ export default class CtCollectStatusTable extends React.Component {
             var obj = {};
             obj.title = item.name;
             obj.dataIndex = item.id;
-            obj.ellipsis = {
-                showTitle: false,
-            };
+            // obj.ellipsis = {
+            //     showTitle: false,
+            // };
             obj.key = item.id;
             obj.align = 'center';
             obj.render = (text, record) => (
