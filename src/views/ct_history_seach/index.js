@@ -226,7 +226,7 @@ export default class ResumeIndex extends React.Component {
 
                 </div>
                 <div className="ct-history-div-table">
-                    <Table bordered="true" columns={this.state.columns} dataSource={this.state.data} sortDirections={['ascend', 'descend']} pagination={false} />
+                    <Table  columns={this.state.columns} dataSource={this.state.data} sortDirections={['ascend', 'descend']} pagination={false} />
                 </div>
                 <div className="ct-history-div-chart">
                     <CtHistorySeachChart dataSource={this.state.data} entityName={this.state.entityName}></CtHistorySeachChart>

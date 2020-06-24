@@ -71,6 +71,7 @@ export default class ReactEchartTestHeart extends React.Component {
                     symbolSize='10'
                     symbolType='diamond'
                     splitLineWidth='1'
+                    isRotate='20'
                     itemStyleLabel='#fff'
                     ></ReactEchart>
                 </div>
