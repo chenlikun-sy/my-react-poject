@@ -1,5 +1,5 @@
 import React from 'react'
-import {Button}  from 'antd'
+import { Button } from 'antd'
 
 import './ct_collect_status.css'
 
@@ -14,14 +14,14 @@ export default class CtCollectStatus extends React.Component {
 
     componentDidMount() {
 
-     
+
     }
 
-      toolClick = (provId, omcId, typeId, beginTime, endTime) => {
+    toolClick = (provId, omcId, typeId, beginTime, endTime) => {
         this.onRefTable.getData(provId, omcId, typeId, beginTime, endTime)
-      };
+    };
 
-    render(){
+    render() {
         return (
             <div className="ct-collect-status">
                 <CtCollectStatusTool toolClick={this.toolClick}></CtCollectStatusTool>

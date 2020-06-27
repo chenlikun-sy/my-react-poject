@@ -69,8 +69,6 @@ export default class CtCollectStatusTool extends React.Component {
         })
     }
 
-
-
     getOmcDataCompleted(data) {
         var list = [];
         data.forEach(item => {
@@ -181,12 +179,12 @@ export default class CtCollectStatusTool extends React.Component {
 
     confirm(text) {
         Modal.confirm({
-          title: '提示',
-          icon: <ExclamationCircleOutlined />,
-          content: text,
-          okText: '确认'
+            title: '提示',
+            icon: <ExclamationCircleOutlined />,
+            content: text,
+            okText: '确认'
         });
-      }
+    }
 
     render() {
         const { Option } = Select;
@@ -194,19 +192,19 @@ export default class CtCollectStatusTool extends React.Component {
         return (
             <div className="ct-collect-status-tool">
                 <div className="ct-collect-status-tool-title">省份</div>
-                <Select className="ct-collect-status-tool-select" value={this.state.provinceValue} onChange={this.provinceChange} >
+                <Select className="ct-collect-status-tool-select" value={this.state.provinceValue} onChange={this.provinceChange} showSearch optionFilterProp="children">
                     {this.state.provinceList.map((item) => {
                         return <Option value={item.province_id} key={item.province_id}>{item.province_name}</Option>;
                     })}
                 </Select>
                 <div className="ct-collect-status-tool-title">OMC名称</div>
-                <Select className="ct-collect-status-tool-select" value={this.state.omcValue} onChange={this.omcChange} >
+                <Select className="ct-collect-status-tool-select" value={this.state.omcValue} onChange={this.omcChange} showSearch optionFilterProp="children">
                     {this.state.omcList.map((item) => {
                         return <Option value={item.omc_id} key={item.omc_id}>{item.omc_name}</Option>;
                     })}
                 </Select>
                 <div className="ct-collect-status-tool-title">数据类型</div>
-                <Select className="ct-collect-status-tool-select" value={this.state.typeValue} onChange={this.typeChange} >
+                <Select className="ct-collect-status-tool-select" value={this.state.typeValue} onChange={this.typeChange} showSearch optionFilterProp="children">
                     {this.state.typeList.map((item) => {
                         return <Option value={item.type_id} key={item.type_id}>{item.type_name}</Option>;
                     })}

@@ -1,10 +1,12 @@
 import React from 'react'
-import { Button } from 'antd'
+import moment from 'moment';
 
 import './ct_data_quality.less'
 
-import img1 from './img/u2747.svg';
-import img2 from './img/u2748.svg';
+import CtDataQualityCircle from './ct_data_quality_circle/ct_data_quality_circle';
+
+import { getQualityQueryByInfo } from "../../common/axios/sysService";
+
 import omcJson from './config/omc.json'
 
 export default class CtDataQuality extends React.Component {
@@ -13,44 +15,137 @@ export default class CtDataQuality extends React.Component {
         this.state = {
             dataSource: [],
             omcList: [],
+            headList: [],
         }
-        this.headList = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23];
     }
 
     componentDidMount() {
-        var omcList = [];
+        this.setState({
+            headList: this.getThead(),
+            omcList: this.getOmcList()
+        })
+        this.getDataInfo()
+    }
+
+    //获取数据
+    getDataInfo() {
+        getQualityQueryByInfo().then(res => {
+            this.getDataInfoCompleted(res);
+        });
+    }
+    getDataInfoCompleted(data) {
+        //测试数据
+        var time = '2020-05-05 00:00:00'
+        var date = new Date(time)
+        //获取某个时间之前9个小时的数据形成集合
+        var timeList = []
+        for (var i = 0; i < 10; i++) {
+            timeList.push(moment(new Date(date.getTime() - i * 24 * 60 * 60 * 1000)).format("YYYY-MM-DD"))
+        }
+        timeList.reverse()
+
+        var list = []
+        timeList.forEach((item, index) => {
+            var objLine = {}
+            objLine.id = index
+            objLine.name = item
+            objLine.list = []
+            var oneDataList = data.filter(function (dataItem) {
+                if (dataItem.data_start_time.indexOf(item) !== -1) {
+                    return dataItem;
+                }
+            })
+            this.state.headList.forEach((headItem) => {
+                var timeDataItem = oneDataList.find(function (dataItem) {
+                    var dateStr = dataItem.data_start_time.substr(11, 2);
+                    if (dateStr.indexOf(headItem.name) !== -1) {
+                        return dataItem;
+                    }
+                })
+                var obj = {}
+                obj.isNoData = true
+                obj.color = '#fff'
+                if (timeDataItem) {
+                    obj.isNoData = false
+                    obj.data_rows = timeDataItem.data_rows
+                    obj.data_start_time = timeDataItem.data_start_time
+                    obj.description = timeDataItem.description
+                    obj.integrity_rate = timeDataItem.integrity_rate
+                    obj.omc_id = timeDataItem.omc_id
+                    obj.omc_name = timeDataItem.omc_name
+                    obj.province_name = timeDataItem.province_name
+                    obj.type_name = timeDataItem.type_name
+                    obj.color = this.getAlarmColor(timeDataItem.integrity_rate)
+                }
+                objLine.list.push(obj)
+            })
+            list.push(objLine)
+        })
+        this.setState({
+            dataSource: list
+        })
+    }
+
+    //返回告警颜色
+    getAlarmColor(num) {
+        var color = '';
+        if (Number(num) > 99) {
+            color = 'green';
+        } else if (Number(num) > 95 && Number(num) <= 99) {
+            color = 'GreenYellow';
+        } else if (Number(num) > 90 && Number(num) <= 95) {
+            color = 'Yellow';
+        } else {
+            color = 'red';
+        }
+        return color;
+    }
+    //获取头部数据
+    getOmcList() {
+        var list = []
         omcJson.forEach((item) => {
             var obj = {
                 id: item.id,
                 name: item.name,
                 img1: item.img1,
-                img2: item.img2,
-                selected: false
+                img2: item.img2
             }
-            omcList.push(obj)
+            list.push(obj)
         })
-        this.setState({
-            omcList: omcList
-        })
+        return list
+    }
+    //生成表头
+    getThead() {
+        var list = [];
+        for (var i = 0; i < 24; i++) {
+            var obj = {
+                id: i,
+                name: '' + i
+            }
+            if (i < 10) {
+                obj.name = '0' + i;
+            }
+            list.push(obj);
+        }
+        return list;
     }
 
+    //头部omc点击事件
     omcClick(item) {
         this.state.omcList.map((eachItem) => { eachItem.selected = false })
         item.selected = true;
         this.setState({
             omcList: this.state.omcList
+        }, () => {
+            this.changeOmcData(item)
         })
     }
-
-    imgOnclick(item) {
-
-    }
-    omcOnMouseOver(item) {
+    changeOmcData(item) {
 
     }
-    omcOnMouseOut(item) {
 
-    }
+
+
     render() {
         return (
             <div className="ct-data-quality">
@@ -68,39 +163,31 @@ export default class CtDataQuality extends React.Component {
                 </div>
                 <div className="ct-data-quality-table">
                     <div className="ct-data-quality-thead">
-                        <div className="ct-data-quality-thead-title-first">1</div>
+                        <div className="ct-data-quality-thead-title-first"></div>
                         {
-                            this.headList.map((item) => {
-                                return <div className="ct-data-quality-thead-title"> <span>{item.toString()}</span> </div>
+                            this.state.headList.map((item) => {
+                                return <div className="ct-data-quality-thead-title"> <span>{item.id}</span> </div>
                             })
                         }
                     </div>
-                    {/* {
-                        this.headList.map((item) => {
+                    {
+                        this.state.dataSource.map((item) => {
                             return <div className="ct-data-quality-tbody-row">
-                                <div className="ct-data-quality-tbody-row-first"> 2020-04-11 </div>
+                                <div className="ct-data-quality-tbody-row-first">{item.name}</div>
                                 {
-                                    this.headList.map((item) => {
-                                        return <div className="ct-data-quality-thead-title">
-                                            <div className="ct-data-qualityd-child">
-                                                <div className="ct-data-quality-child-circle" onRightClick={() => this.imgOnclick(item)} onMouseOver={() => this.omcOnMouseOver(item)} onMouseOut={() => this.omcOnMouseOut(item)}></div>
-                                                <div className="ct-data-quality-child-div" style={{ display: 'none' }}>补采</div>
-                                            </div>
-                                            <div className="ct-data-qualityd-tooltip">
-                                                <div>
-                                                    <span></span>
-                                                    <span>100.00</span>
-                                                </div>
-                                                <div>15min 111</div>
-                                            </div>
+                                    item.list.map((items, index) => {
+                                        return <div className="ct-data-quality-thead-title" key={index}>
+                                            <CtDataQualityCircle param={items} index={index}></CtDataQualityCircle>
                                         </div>
                                     })
                                 }
                             </div>
                         })
-                    } */}
+                    }
                 </div>
             </div>
         )
     }
+
+
 }

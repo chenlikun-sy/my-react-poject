@@ -267,6 +267,66 @@ function getQualityQueryByInfoTest() {
         integrity_rate: 85,
         description: "15min*4 ROWS:85060 CM/PM OK ROWS：7898"
     });
+    list.push({
+        province_name: "安徽",
+        omc_id: 3402,
+        omc_name: "AH_OMC2",
+        type_name: "zx_pc_1a_2",
+        data_start_time: "2020-05-05 20:00:00",
+        data_rows: 85060,
+        integrity_rate: 85,
+        description: "15min*4 ROWS:85060 CM/PM OK ROWS：7898"
+    });
+    list.push({
+        province_name: "安徽",
+        omc_id: 3402,
+        omc_name: "AH_OMC2",
+        type_name: "zx_pc_1a_2",
+        data_start_time: "2020-05-05 21:00:00",
+        data_rows: 85060,
+        integrity_rate: 85,
+        description: "15min*4 ROWS:85060 CM/PM OK ROWS：7898"
+    });
+    list.push({
+        province_name: "安徽",
+        omc_id: 3402,
+        omc_name: "AH_OMC2",
+        type_name: "zx_pc_1a_2",
+        data_start_time: "2020-05-05 22:00:00",
+        data_rows: 85060,
+        integrity_rate: 85,
+        description: "15min*4 ROWS:85060 CM/PM OK ROWS：7898"
+    });
+    list.push({
+        province_name: "安徽",
+        omc_id: 3402,
+        omc_name: "AH_OMC2",
+        type_name: "zx_pc_1a_2",
+        data_start_time: "2020-05-05 23:00:00",
+        data_rows: 85060,
+        integrity_rate: 85,
+        description: "15min*4 ROWS:85060 CM/PM OK ROWS：7898"
+    });
+    list.push({
+        province_name: "安徽",
+        omc_id: 3402,
+        omc_name: "AH_OMC2",
+        type_name: "zx_pc_1a_2",
+        data_start_time: "2020-05-05 19:00:00",
+        data_rows: 85060,
+        integrity_rate: 85,
+        description: "15min*4 ROWS:85060 CM/PM OK ROWS：7898"
+    });
+    list.push({
+        province_name: "安徽",
+        omc_id: 3402,
+        omc_name: "AH_OMC2",
+        type_name: "zx_pc_1a_2",
+        data_start_time: "2020-05-03 16:00:00",
+        data_rows: 85060,
+        integrity_rate: 85,
+        description: "15min*4 ROWS:85060 CM/PM OK ROWS：7898"
+    });
     return list;
 }
 
