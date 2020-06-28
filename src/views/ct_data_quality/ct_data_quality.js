@@ -103,12 +103,16 @@ export default class CtDataQuality extends React.Component {
     //获取头部数据
     getOmcList() {
         var list = []
-        omcJson.forEach((item) => {
+        omcJson.forEach((item, index) => {
             var obj = {
                 id: item.id,
                 name: item.name,
                 img1: item.img1,
-                img2: item.img2
+                img2: item.img2,
+                selected: false
+            }
+            if (index === 0) {
+                obj.selected = true
             }
             list.push(obj)
         })
