@@ -21,7 +21,7 @@ class AppRouter extends React.Component {
                             {/* Switch只显示一个组件。加exact表示精确匹配/。如果不加exact，/xxx也会匹配/。  */}
                             <Switch>
                                 {/* exact */}
-                                <Route exact path="/" component={HomeIndex} />
+                                <Route exact path="/" component={CtCollectStatus} />
                                 {/* CtOmcDataQuality */}
                                 <Route exact path="/CtOmcDataQuality" component={CtOmcDataQuality} />
                                 {/* CtCollectStatus */}

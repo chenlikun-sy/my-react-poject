@@ -111,8 +111,8 @@ export default class ResumeIndex extends React.Component {
                 dataIndex: 'check_time',
                 key: 'check_time',
                 width: 200,
-                height:30,
-                size:"small",
+                height: 30,
+                size: "small",
                 sorter: (a, b) => new Date(a.check_time) - new Date(b.check_time),
                 ellipsis: true
             },
@@ -121,8 +121,8 @@ export default class ResumeIndex extends React.Component {
                 dataIndex: 'severity_txt',
                 key: 'severity_txt',
                 width: 200,
-                height:30,
-                size:"small",
+                height: 30,
+                size: "small",
                 sorter: (a, b) => a.severity_txt.length - b.severity_txt.length,
                 ellipsis: true
             },
@@ -131,8 +131,8 @@ export default class ResumeIndex extends React.Component {
                 dataIndex: 'value',
                 key: 'value',
                 width: 200,
-                height:30,
-                size:"small",
+                height: 30,
+                size: "small",
                 sorter: (a, b) => a.value - b.value,
                 ellipsis: true
             },
@@ -140,8 +140,8 @@ export default class ResumeIndex extends React.Component {
                 title: '描述',
                 dataIndex: 'host_name',
                 key: 'host_name',
-                height:30,
-                size:"small",
+                height: 30,
+                size: "small",
                 sorter: (a, b) => a.host_name.length - b.host_name.length,
                 ellipsis: true
             }]
@@ -202,43 +202,45 @@ export default class ResumeIndex extends React.Component {
         const entityNameList = this.state.entityNameList;
         return (
             <div className="ct-history-div">
-                <div className="ct-history-div-seach">
-                    <Space className="ct-history-div-seach-first">
-                        主机号<Select style={{ width: 120 }} value={this.state.ipText} onChange={this.onHostChange}>
-                            {ipList.map(item => {
-                                return <Option value={item.ipName}>{item.ipId}</Option>
-                            })}
+                <React.StrictMode>
+                    <div className="ct-history-div-seach">
+                        <Space className="ct-history-div-seach-first">
+                            主机号<Select style={{ width: 120 }} value={this.state.ipText} onChange={this.onHostChange}>
+                                {ipList.map(item => {
+                                    return <Option value={item.ipName}>{item.ipId}</Option>
+                                })}
 
-                        </Select>
-                    </Space>
+                            </Select>
+                        </Space>
 
-                    <Space className="ct-history-div-seach-second">
-                        检查项<Select style={{ width: 120 }} defaultValue="虚拟内存" value={this.state.entityName} onChange={this.onCheckChange}>
-                            {entityNameList.map(item => {
-                                return <Option value={item.typeId}>{item.typeName}</Option>
-                            })}
-                        </Select>
-                    </Space>
+                        <Space className="ct-history-div-seach-second">
+                            检查项<Select style={{ width: 120 }} defaultValue="虚拟内存" value={this.state.entityName} onChange={this.onCheckChange}>
+                                {entityNameList.map(item => {
+                                    return <Option value={item.typeId}>{item.typeName}</Option>
+                                })}
+                            </Select>
+                        </Space>
 
-                    <Space className="ct-history-div-seach-three">
-                        时间范围<DatePicker showTime defaultValue={moment(this.state.beginTime, dateFormat)} format={dateFormat} onChange={this.beginTimeClick} />
-                    </Space>
+                        <Space className="ct-history-div-seach-three">
+                            时间范围<DatePicker showTime defaultValue={moment(this.state.beginTime, dateFormat)} format={dateFormat} onChange={this.beginTimeClick} />
+                        </Space>
 
-                    <Space className="ct-history-div-seach-four">
-                        至<DatePicker showTime defaultValue={moment(this.state.endTime, dateFormat)} format={dateFormat} onChange={this.endTimeClick} />
-                    </Space>
-                    <Space>
-                        <Button type='primary' onClick={this.seachClick}>查询</Button>
-                    </Space>
+                        <Space className="ct-history-div-seach-four">
+                            至<DatePicker showTime defaultValue={moment(this.state.endTime, dateFormat)} format={dateFormat} onChange={this.endTimeClick} />
+                        </Space>
+                        <Space>
+                            <Button type='primary' onClick={this.seachClick}>查询</Button>
+                        </Space>
 
 
-                </div>
-                <div className="ct-history-div-table">
-                    <Table  ref="table" columns={this.state.columns} dataSource={this.state.data} sortDirections={['ascend', 'descend']} pagination={false} />
-                </div>
-                <div className="ct-history-div-chart">
-                    <CtHistorySeachChart dataSource={this.state.data} entityName={this.state.entityName}></CtHistorySeachChart>
-                </div>
+                    </div>
+                    <div className="ct-history-div-table">
+                        <Table ref="table" rowClassName="clkRow" columns={this.state.columns} dataSource={this.state.data} sortDirections={['ascend', 'descend']} pagination={false} />
+                    </div>
+                    <div className="ct-history-div-chart">
+                        <CtHistorySeachChart dataSource={this.state.data} entityName={this.state.entityName}></CtHistorySeachChart>
+                    </div>
+                </React.StrictMode>
             </div>
         )
     }

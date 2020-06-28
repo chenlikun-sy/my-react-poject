@@ -1,7 +1,8 @@
 const webpackMerge = require("webpack-merge");
 const baseWebpackConfig = require("./webpack.base.config")
 const utils = require("./utils")
-const HtmlWebpackPlugin = require("html-webpack-plugin")
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const { changeConfirmLocale } = require("antd/lib/modal/locale");
 
 module.exports = webpackMerge(baseWebpackConfig,{
     // 指定构建环境  

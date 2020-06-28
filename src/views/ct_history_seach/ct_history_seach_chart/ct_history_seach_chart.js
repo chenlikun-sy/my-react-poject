@@ -73,6 +73,7 @@ export default class ReactEchartTestHeart extends React.Component {
                     splitLineWidth='1'
                     isRotate='20'
                     itemStyleLabel='#fff'
+                    onCell
                     ></ReactEchart>
                 </div>
             </div>
