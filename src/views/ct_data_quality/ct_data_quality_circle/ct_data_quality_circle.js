@@ -4,6 +4,8 @@ import './ct_data_quality_circle.less'
 
 import { getQualityInstructions } from "../../../common/axios/sysService";
 
+import { CloseOutlined } from '@ant-design/icons';
+
 export default class CtDataQualityCircle extends React.Component {
     constructor(props) {
         super(props);
@@ -76,6 +78,7 @@ export default class CtDataQualityCircle extends React.Component {
                         onMouseOut={() => this.omcOnMouseOut()}
                         style={{ backgroundColor: this.props.param.color }}
                     >
+                        <img src="static/img/ct_data_quality/close.png" style={{ display: this.props.param.isNoData ? 'block' : 'none' }}></img>
                     </div>
                     <div className="ct-data-quality-circle-div" style={{ display: this.state.showDiv ? 'block' : 'none' }} onClick={() => this.omcClick()}>补采</div>
                 </div>

@@ -12,12 +12,18 @@
     position: relative;
 }
 .ct-data-quality-circle-child{
-    display: inline-block;
     width: 15px;
     height: 15px;
     border-radius: 50%;
     //background-color: red;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.ct-data-quality-circle-child>img{
+    width: 13px;
+    height: 13px;
 }
 .ct-data-quality-circle-div{
     position: absolute;
@@ -71,5 +77,5 @@
     color: #fff;
 }
 .ct-data-quality-circle-lastPosition{
-    left:-180px;
+    left:-210px;
 }
