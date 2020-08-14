@@ -1,4 +1,4 @@
-// 电信入围测试-OMC原始数据质量报告
+// 电信入围测试-历史状态查询页面
 import React from 'react'
 import {
     getSystemHistoryQuery, getHostIpInfoByDic, getEntityNameInfoByDic
