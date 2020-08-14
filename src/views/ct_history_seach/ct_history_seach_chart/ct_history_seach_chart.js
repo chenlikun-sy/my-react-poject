@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactEchart from '../../../common/Component/echarts/ReactEchart'
+import ReactEchart from '../../../common/component/echarts/ReactEchart'
 import './ReactEchartTest.css'
 import {
     getSystemHistoryQuery
