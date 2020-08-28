@@ -15,8 +15,8 @@ module.exports = {
     // 出口
     output: {
         path : resolve("../dist"),
-        filename: "/dist/js/[name].[hash].js",
-        publicPath: "/" // 打包后的资源的访问路径前缀
+        filename: "js/[name].[hash].js",
+        publicPath: "/dist" // 打包后的资源的访问路径前缀
     },
     // 模块
     module:{

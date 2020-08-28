@@ -10,8 +10,8 @@ module.exports = {
     // 出口
     output: {
         path : utils.resolve("../dist"),
-        filename: "dist/js/[name].[hash].js",
-        publicPath: "/" // 打包后的资源的访问路径前缀
+        filename: "js/[name].[hash].js",
+        publicPath: "/dist" // 打包后的资源的访问路径前缀
     },
     resolve: {
         extensions: ['.js', '.json'], // 解析扩展。（当我们通过路导入文件，找不到改文件时，会尝试加入这些后缀继续寻找文件）
